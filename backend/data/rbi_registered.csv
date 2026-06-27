@@ -1,0 +1,51 @@
+entity_name,type,registration_number
+State Bank of India,Public Sector Bank,SBI0001
+Punjab National Bank,Public Sector Bank,PNB0002
+Bank of Baroda,Public Sector Bank,BOB0003
+Canara Bank,Public Sector Bank,CAN0004
+Union Bank of India,Public Sector Bank,UBI0005
+Bank of India,Public Sector Bank,BOI0006
+Indian Bank,Public Sector Bank,INB0007
+Central Bank of India,Public Sector Bank,CBI0008
+Indian Overseas Bank,Public Sector Bank,IOB0009
+UCO Bank,Public Sector Bank,UCO0010
+HDFC Bank,Private Sector Bank,HDFC0011
+ICICI Bank,Private Sector Bank,ICICI0012
+Axis Bank,Private Sector Bank,AXIS0013
+Kotak Mahindra Bank,Private Sector Bank,KMB0014
+IndusInd Bank,Private Sector Bank,IIB0015
+Yes Bank,Private Sector Bank,YES0016
+IDBI Bank,Private Sector Bank,IDBI0017
+Federal Bank,Private Sector Bank,FED0018
+South Indian Bank,Private Sector Bank,SIB0019
+RBL Bank,Private Sector Bank,RBL0020
+Bandhan Bank,Private Sector Bank,BAN0021
+IDFC First Bank,Private Sector Bank,IDFC0022
+Bajaj Finance,NBFC,NBFC0023
+Muthoot Finance,NBFC,NBFC0024
+Shriram Finance,NBFC,NBFC0025
+Mahindra Finance,NBFC,NBFC0026
+Tata Capital,NBFC,NBFC0027
+L&T Finance,NBFC,NBFC0028
+Aditya Birla Finance,NBFC,NBFC0029
+HDB Financial Services,NBFC,NBFC0030
+Manappuram Finance,NBFC,NBFC0031
+Poonawalla Fincorp,NBFC,NBFC0032
+IIFL Finance,NBFC,NBFC0033
+Cholamandalam Investment,NBFC,NBFC0034
+Sundaram Finance,NBFC,NBFC0035
+Hero FinCorp,NBFC,NBFC0036
+PayU Finance,NBFC,NBFC0037
+Bajaj Finserv,NBFC,NBFC0038
+Fullerton India Credit Company,NBFC,NBFC0039
+Home First Finance Company,NBFC,NBFC0040
+Paytm Payments Bank,Payments Bank,PAY0041
+Airtel Payments Bank,Payments Bank,AIR0042
+India Post Payments Bank,Payments Bank,IPP0043
+Fino Payments Bank,Payments Bank,FIN0044
+Jio Payments Bank,Payments Bank,JIO0045
+PhonePe,Payment Aggregator,PA0046
+Google Pay,Payment Aggregator,PA0047
+Razorpay,Payment Aggregator,PA0048
+BharatPe,Payment Aggregator,PA0049
+CRED,Payment Aggregator,PA0050
