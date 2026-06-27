@@ -19,7 +19,7 @@ try:
     users.create_index("telegramId", unique=True)
     goals.create_index([("telegramId", 1), ("type", 1)])
     transactions.create_index("telegramId")
-    transactions.create_index("refHash", sparse=True)
+    transactions.create_index([("telegramId", 1), ("refHash", 1)], sparse=True)
     merchant_categories.create_index("merchant", unique=True)
     schemes.create_index("slug", unique=True)
     schemes.create_index([("scheme_name", "text"), ("details", "text"), ("eligibility", "text"), ("tags", "text")])

@@ -16,6 +16,9 @@ def tracker_agent(user, message):
         return reply("This does not look like a completed transaction. Please send a debit or credit SMS.")
 
     ref_hash = hash_ref(data.get("referenceNo"))
+    if ref_hash and transactions.find_one({"telegramId": str(user["telegramId"]), "refHash": ref_hash}):
+        return reply("This transaction is already recorded.")
+
     merchant = clean(data.get("merchant"))
     transaction = clean_transaction(user, data, merchant, ref_hash)
     transactions.insert_one(transaction)
@@ -101,7 +104,7 @@ def clean_category(value):
 
 
 def extract_json(text):
-    match = re.search(r"\{.*\}", str(text), re.S)
+    match = re.search(r"\{.*?\}", str(text), re.S)
     return match.group(0) if match else "{}"
 
 

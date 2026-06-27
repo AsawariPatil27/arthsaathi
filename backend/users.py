@@ -21,10 +21,12 @@ def default_user(telegram_id):
         "emergencyFundAmount": 0,
         "state": "",
         "district": "",
+        # Farmer-specific
+        "harvestIncome": 0,
         "harvestMonth": "",
         "leanDurationMonths": 0,
         "leanMonthlyExpense": 0,
-        "goals": [],
+        # Planner state
         "pendingGoal": None,
         "pendingGoals": [],
         "pendingAction": "",
