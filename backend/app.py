@@ -7,7 +7,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 load_dotenv()
 
 from ai.graph import run_graph
-from language import to_english, to_user_language
+from language import is_machine_message, to_english, to_user_language
 from onboarding import handle_onboarding
 from users import get_or_create_user
 from voice import voice_to_text
@@ -15,11 +15,25 @@ from voice import voice_to_text
 app = FastAPI()
 
 
+
 def handle_message(user, message):
-    """Translate message to English, run through AI graph, translate reply back."""
+    """Translate every user message to English, run through AI graph, translate reply back.
+
+    Machine callbacks (choose_goal:, confirm_goal:, edit_goal:, scheme:) are
+    never translated — they are internal codes, not user-typed text.
+    The original raw message is always preserved in user['originalMessage']
+    so agents like scam detection can access the original URLs/text.
+    """
     language = user.get("language", "en")
-    english_input = to_english(message, language)
-    response = run_graph({**user, "originalMessage": message}, english_input)
+    user_ctx = {**user, "originalMessage": message}
+
+    if is_machine_message(message):
+        # Internal callback — pass through untouched
+        response = run_graph(user_ctx, message)
+    else:
+        english_input = to_english(message, language)
+        response = run_graph(user_ctx, english_input)
+
     return to_user_language(response, language)
 
 

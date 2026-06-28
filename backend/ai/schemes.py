@@ -1,10 +1,67 @@
+import json
 import os
 import re
 from urllib.parse import quote_plus
 
 import requests
 
-from db import schemes
+
+# Load schemes once at startup from the JSON file
+_DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "schemes.json")
+
+with open(_DATA_PATH, encoding="utf-8") as _f:
+    _SCHEMES: list[dict] = json.load(_f)
+
+_SCHEMES_BY_SLUG: dict[str, dict] = {s["slug"]: s for s in _SCHEMES}
+
+OCCUPATION_TERMS = {
+    "farmer": ["farmer", "farming", "agriculture", "crop", "kisan", "irrigation", "soil"],
+    "teacher": ["teacher", "professor", "faculty", "school head", "education quality", "training"],
+    "student": ["student", "scholarship", "education", "college", "school", "marksheet"],
+    "healthcare_worker": ["healthcare worker", "health", "medical", "hospital", "clinic", "nurse", "doctor", "insurance"],
+    "government_employee": ["government employee", "salaried", "employee", "epf", "pension", "retirement"],
+    "private_employee": ["private employee", "salaried", "employee", "epf", "esic", "pension", "retirement"],
+    "gig_worker": ["gig worker", "platform worker", "unorganised", "informal", "worker", "social security", "micro-loan"],
+    "shop_owner": ["shop owner", "business", "entrepreneur", "loan", "msme", "startup", "self employment", "working capital"],
+    "daily_wage": ["daily wage", "worker", "income", "poor", "bpl", "financial assistance", "livelihood"],
+    "freelancer": ["freelancer", "self employed", "business", "skill", "pension", "loan", "entrepreneur"],
+    "homemaker": ["homemaker", "women", "woman", "girl", "mother", "shg", "self help group", "livelihood"],
+}
+
+REQUEST_TERMS = {
+    "farmer": OCCUPATION_TERMS["farmer"],
+    "kisan": OCCUPATION_TERMS["farmer"],
+    "student": OCCUPATION_TERMS["student"],
+    "scholarship": OCCUPATION_TERMS["student"],
+    "teacher": OCCUPATION_TERMS["teacher"],
+    "health": OCCUPATION_TERMS["healthcare_worker"],
+    "medical": OCCUPATION_TERMS["healthcare_worker"],
+    "business": OCCUPATION_TERMS["shop_owner"],
+    "loan": OCCUPATION_TERMS["shop_owner"],
+    "gig": OCCUPATION_TERMS["gig_worker"],
+    "worker": OCCUPATION_TERMS["gig_worker"],
+    "women": OCCUPATION_TERMS["homemaker"],
+    "woman": OCCUPATION_TERMS["homemaker"],
+}
+
+FARMER_ONLY_TERMS = ["pm kisan", "pm-kisan", "kisan credit", "fasal bima", "crop insurance", "solar pump", "soil health", "krishi", "irrigation"]
+TEACHER_ONLY_TERMS = ["teacher", "faculty", "professor"]
+STUDENT_ONLY_TERMS = ["student", "scholarship", "marksheet"]
+UNORGANISED_WORKER_TERMS = ["unorganised", "unorganized", "gig worker", "platform worker", "street vendor", "daily wage"]
+
+FLAGSHIP_BOOSTS = {
+    "farmer": ["pm-kisan", "kcc", "pmfby"],
+    "teacher": ["nishtha", "diksha", "national-awards-to-teachers"],
+    "student": ["pm-yasasvi", "csss", "post-matric-scholarship"],
+    "government_employee": ["nps", "epf"],
+    "private_employee": ["epf", "esic", "nps"],
+    "gig_worker": ["e-shram", "pm-sym", "pm-svanidhi"],
+    "shop_owner": ["pmmy-mudra", "pmegp", "stand-up-india"],
+    "daily_wage": ["e-shram", "pm-sym", "day-nulm"],
+    "freelancer": ["pmmy-mudra", "pmegp", "nps"],
+    "homemaker": ["day-nrlm", "stand-up-india", "sukanya-samriddhi-yojana"],
+    "healthcare_worker": ["abdm", "ab-pmjay", "esic"],
+}
 
 
 def scheme_reply(user, message):
@@ -26,77 +83,100 @@ def scheme_reply(user, message):
 
 
 def scheme_details(user, slug):
-    scheme = schemes.find_one({"slug": slug})
+    scheme = _SCHEMES_BY_SLUG.get(slug)
     if not scheme:
         return {"reply": "I could not find that scheme again. Please search schemes once more.", "buttons": []}
 
     videos = youtube_links(scheme["scheme_name"], user.get("language", "en"))
+    link = scheme.get("applicationLink", "")
+    apply_line = f"\n\nApply here: {link}" if link else ""
     reply = (
         f"{scheme['scheme_name']}\n\n"
         f"Why you may be eligible: {why_eligible(user, scheme)}\n\n"
         f"Benefit: {short(scheme.get('benefits'), 500)}\n\n"
         f"Documents: {short(scheme.get('documents'), 500)}\n\n"
-        f"How to apply: {short(scheme.get('application'), 700)}\n\n"
+        f"How to apply: {short(scheme.get('application'), 700)}"
+        f"{apply_line}\n\n"
         f"Videos:\n" + "\n".join(videos)
     )
     return {"reply": reply, "buttons": []}
 
 
 def find_schemes(user, message):
-    words = keywords(user, message)
-    pattern = "|".join(re.escape(word) for word in words)
-    query = {
-        "$and": [
-            {"level": "Central"},
-            {
-                "$or": [
-                    {"scheme_name": {"$regex": pattern, "$options": "i"}},
-                    {"details": {"$regex": pattern, "$options": "i"}},
-                    {"eligibility": {"$regex": pattern, "$options": "i"}},
-                    {"schemeCategory": {"$regex": pattern, "$options": "i"}},
-                    {"tags": {"$regex": pattern, "$options": "i"}},
-                ]
-            },
-        ]
-    }
-    rows = list(schemes.find(query).limit(150))
-    return sorted(rows, key=lambda row: score(row, user, words), reverse=True)
+    occupation = str(user.get("occupation") or "").lower()
+    if occupation == "other" and not has_explicit_scheme_group(message):
+        return []
+
+    terms = match_terms(user, message)
+    matches = [(scheme_score(scheme, terms, occupation, message), scheme) for scheme in _SCHEMES]
+    return [scheme for points, scheme in sorted(matches, key=lambda row: row[0], reverse=True) if points > 0][:3]
 
 
-def keywords(user, message):
-    text = f"{message} {user.get('occupation', '')} {user.get('incomeType', '')}".lower()
-    words = ["financial assistance", "welfare", "benefit", "support"]
-
-    groups = {
-        ("farmer", "agriculture", "crop", "kisan"): ["farmer", "farming", "agriculture", "crop", "kisan", "irrigation", "soil"],
-        ("student", "education", "scholarship", "college", "school"): ["student", "education", "scholarship", "hostel", "college", "school"],
-        ("health", "medical", "hospital", "insurance"): ["health", "medical", "hospital", "insurance", "treatment"],
-        ("business", "loan", "startup", "msme", "self employed"): ["business", "entrepreneur", "loan", "msme", "startup", "self employment"],
-        ("woman", "women", "girl", "female"): ["women", "girl", "mother", "widow"],
-        ("variable", "low income", "poor"): ["income", "poor", "bpl", "financial assistance"],
-    }
-    for triggers, add in groups.items():
-        if has(text, triggers):
-            words += add
-
-    return list(dict.fromkeys(words))
+def has_explicit_scheme_group(message):
+    text = str(message or "").lower()
+    groups = [
+        "farmer", "kisan", "agriculture", "crop",
+        "teacher", "professor", "faculty",
+        "student", "scholarship", "education",
+        "health", "medical", "insurance",
+        "business", "loan", "startup", "msme", "shop",
+        "gig", "daily wage", "freelancer", "vendor", "worker",
+        "women", "woman", "homemaker",
+    ]
+    return has(text, groups)
 
 
-def score(scheme, user, words):
-    text = " ".join(str(scheme.get(field, "")) for field in ["scheme_name", "details", "eligibility", "schemeCategory", "tags"]).lower()
-    points = sum(3 for word in words if word.lower() in text)
-    if user.get("occupation") == "farmer" and has(text, ["pm kisan", "pm-kisan", "kisan samman nidhi", "pradhan mantri kisan"]):
-        points += 100
-    points += 5 if user.get("occupation", "").lower() and user["occupation"].lower() in text else 0
-    points += 2 if money(user.get("monthlyIncome")) and has(text, ["income", "poor", "bpl", "financial assistance"]) else 0
+def match_terms(user, message):
+    occupation = str(user.get("occupation") or "").lower()
+    request = str(message or "").lower()
+    terms = list(OCCUPATION_TERMS.get(occupation, []))
+
+    for trigger, add_terms in REQUEST_TERMS.items():
+        if trigger in request:
+            terms.extend(add_terms)
+
+    return list(dict.fromkeys(term.lower() for term in terms if term))
+
+
+def scheme_score(scheme, terms, occupation, message=""):
+    text = scheme_text(scheme)
+    points = sum(5 for term in terms if term in text)
+    request_words = re.findall(r"[a-zA-Z][a-zA-Z-]+", str(message or "").lower())
+    points += sum(1 for word in request_words if word in text)
+
+    if occupation != "farmer" and not has_explicit_farmer_request(message) and has(text, FARMER_ONLY_TERMS):
+        points -= 80
+    if occupation not in ["teacher", "professor"] and has(text, TEACHER_ONLY_TERMS):
+        points -= 30
+    if occupation != "student" and has(text, STUDENT_ONLY_TERMS):
+        points -= 25
+    if occupation in ["government_employee", "private_employee"] and has(text, UNORGANISED_WORKER_TERMS):
+        points -= 35
+    if scheme.get("slug") in FLAGSHIP_BOOSTS.get(occupation, []):
+        points += 25
+
     return points
+
+
+def scheme_text(scheme):
+    return " ".join(
+        str(scheme.get(field, ""))
+        for field in ["scheme_name", "details", "eligibility", "schemeCategory", "tags"]
+    ).lower()
+
+
+def has_explicit_farmer_request(message):
+    return has(str(message or "").lower(), ["farmer", "kisan", "agriculture", "crop", "farming"])
 
 
 def quick_reason(user, scheme):
     text = " ".join(str(scheme.get(field, "")) for field in ["eligibility", "details", "tags", "schemeCategory"]).lower()
-    if user.get("occupation") and user["occupation"].lower() in text:
-        return f"Your profile says you are a {user['occupation']}, and this scheme mentions that group."
-    return "This is a Central scheme and its category/keywords match your profile. Please check final eligibility before applying."
+    occupation = str(user.get("occupation") or "").replace("_", " ")
+    if occupation and occupation.lower() in text:
+        return f"Your profile says you are a {occupation}, and this scheme mentions that group."
+    if occupation:
+        return f"This scheme's keywords match your {occupation} profile or request. Please check final eligibility before applying."
+    return "This scheme's keywords match your request. Please check final eligibility before applying."
 
 
 def why_eligible(user, scheme):

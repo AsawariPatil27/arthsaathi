@@ -15,12 +15,18 @@ def tracker_agent(user, message):
     if not data.get("isTransaction"):
         return reply("This does not look like a completed transaction. Please send a debit or credit SMS.")
 
-    ref_hash = hash_ref(data.get("referenceNo"))
-    if ref_hash and transactions.find_one({"telegramId": str(user["telegramId"]), "refHash": ref_hash}):
+    merchant = clean(data.get("merchant"))
+    date = data.get("date") or datetime.utcnow().date().isoformat()
+    ref_hash, content_hash = make_hashes(data, merchant, date)
+
+    # Duplicate check: prefer reference hash, fall back to content fingerprint
+    tid = str(user["telegramId"])
+    if ref_hash and transactions.find_one({"telegramId": tid, "refHash": ref_hash}):
+        return reply("This transaction is already recorded.")
+    if not ref_hash and transactions.find_one({"telegramId": tid, "contentHash": content_hash}):
         return reply("This transaction is already recorded.")
 
-    merchant = clean(data.get("merchant"))
-    transaction = clean_transaction(user, data, merchant, ref_hash)
+    transaction = clean_transaction(user, data, merchant, ref_hash, content_hash, date)
     transactions.insert_one(transaction)
 
     if merchant:
@@ -33,7 +39,7 @@ def tracker_agent(user, message):
     return reply(f"Recorded Rs {transaction['amount']:.2f} {transaction['type']} for {merchant or transaction['category']}.")
 
 
-def clean_transaction(user, data, merchant, ref_hash):
+def clean_transaction(user, data, merchant, ref_hash, content_hash, date):
     saved_category = merchant_categories.find_one({"merchant": merchant.lower()}) if merchant else None
     return {
         "telegramId": str(user["telegramId"]),
@@ -42,10 +48,11 @@ def clean_transaction(user, data, merchant, ref_hash):
         "merchant": merchant,
         "category": clean_category((saved_category or {}).get("category") or data.get("category")),
         "accountLast4": str(data.get("accountLast4") or ""),
-        "date": data.get("date") or datetime.utcnow().date().isoformat(),
+        "date": date,
         "source": data.get("source", "sms"),
         "bank": data.get("bank", ""),
         "refHash": ref_hash,
+        "contentHash": content_hash,
         "createdAt": datetime.utcnow(),
     }
 
@@ -83,10 +90,16 @@ def extract_transaction(message):
         return fallback
 
 
-def hash_ref(reference_no):
-    if not reference_no:
-        return ""
-    return hashlib.sha256(str(reference_no).encode()).hexdigest()
+def make_hashes(data, merchant, date):
+    """Return (ref_hash, content_hash). ref_hash is empty string if no referenceNo."""
+    ref_hash = ""
+    if data.get("referenceNo"):
+        ref_hash = hashlib.sha256(str(data["referenceNo"]).encode()).hexdigest()
+
+    # Content fingerprint: amount + type + date + merchant (lowercased)
+    fingerprint = f"{money(data.get('amount'))}|{data.get('type', '')}|{date}|{(merchant or '').lower()}"
+    content_hash = hashlib.sha256(fingerprint.encode()).hexdigest()
+    return ref_hash, content_hash
 
 
 def clean(value):

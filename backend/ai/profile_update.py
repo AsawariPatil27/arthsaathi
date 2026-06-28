@@ -7,10 +7,9 @@ from users import save_user
 
 FIELDS = [
     "interactionMode", "language", "incomeType", "occupation",
-    "monthlyIncome", "thisMonthIncome", "lowestMonthIncome", "monthlyExpense",
-    "familySize", "earningMembers", "hasInsurance", "hasEmergencyFund",
-    "emergencyFundAmount", "state", "district", "harvestMonth",
-    "leanDurationMonths", "leanMonthlyExpense", "pendingAction",
+    "monthlyIncome", "lowestMonthIncome", "monthlyExpense",
+    "state", "district", "harvestIncome",
+    "leanDurationMonths", "leanMonthlyExpense",
 ]
 
 

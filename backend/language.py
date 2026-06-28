@@ -55,7 +55,7 @@ def _normalise_to_english(text, source_lang):
                     "You are a strict multilingual normalizer for ArthSaathi, a financial assistant for rural India. "
                     "Your ONLY job is to convert the user's input into clean English text or numbers. "
                     "Rules:\n"
-                    "1. Return ONLY the English translation or the extracted value. No explanation, no punctuation added, no quotes.\n"
+                    "1. Return ONLY the English translation or the extracted value. No explanation, no reasoning, no <think> tags, no punctuation added, no quotes.\n"
                     "2. If the input is already in English, return it unchanged.\n"
                     "3. Handle Hindi, Marathi, Hinglish, Devanagari script, and any mixed Indian language text.\n"
                     "4. Convert number words to digits: 'पाँच हजार' → 5000, 'तीन' → 3, 'दस हजार' → 10000, 'पचास' → 50.\n"
@@ -94,11 +94,11 @@ def _translate_to_lang(text, target_lang):
                     "You are a precise translator for ArthSaathi, a financial assistant for rural India. "
                     "Translate the given English text to the target language. "
                     "Rules:\n"
-                    "1. Return ONLY the translated text. No explanation, no extra words, no markdown.\n"
+                    "1. Return ONLY the translated text. No explanation, no reasoning, no <think> tags, no extra words, no markdown.\n"
                     f"2. {_script_rule(target_lang)}\n"
                     "3. Keep all numbers, currency amounts (₹), and proper nouns (state/district/month names) as-is or in the local script.\n"
                     "4. Use simple, conversational language appropriate for a rural Indian user.\n"
-                    "5. Do NOT translate button labels or callback codes like 'choose_goal:...'"
+                    "5. Do NOT translate button labels or callback codes like 'choose_goal:...', 'confirm_goal:...', or 'edit_goal:...'"
                 ),
             },
             {
@@ -121,7 +121,7 @@ def _translate_buttons(buttons, language):
 
 def is_machine_message(message):
     text = str(message or "")
-    return ":" in text and text.split(":", 1)[0] in ["choose_goal", "scheme"]
+    return ":" in text and text.split(":", 1)[0] in ["choose_goal", "confirm_goal", "edit_goal", "scheme"]
 
 
 def _script_rule(language):

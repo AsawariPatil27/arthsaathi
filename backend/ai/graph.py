@@ -2,11 +2,11 @@ import json
 import re
 
 from ai.agents.insights_agent import insights_agent
+from ai.agents.jargon_agent import jargon_agent
 from ai.agents.planner_agent import planner_agent
 from ai.agents.scam_agent import scam_agent
 from ai.agents.tracker_agent import tracker_agent
 from ai.config.llm import llm
-from ai.jargon import jargon_reply
 from ai.mandi_prices import mandi_price_reply
 from ai.profile_update import update_profile_from_message
 from ai.schemes import scheme_reply
@@ -19,7 +19,7 @@ ROUTES = {
     "mandi": mandi_price_reply,
     "profile": update_profile_from_message,
     "schemes": scheme_reply,
-    "jargon": jargon_reply,
+    "jargon": jargon_agent,
     "scam": scam_agent,
 }
 
@@ -33,41 +33,64 @@ def run_graph(user, message):
 def route_intent(user, message):
     text = str(message or "").lower()
 
-    if user.get("pendingAction") in ["mandi_price", "other_goal_details"]:
-        return "mandi" if user["pendingAction"] == "mandi_price" else "planner"
-    if text.startswith("choose_goal:"):
+    # ── Machine callbacks always go direct ────────────────────────────────
+    if text.startswith(("choose_goal:", "confirm_goal:", "edit_goal:")):
         return "planner"
     if text.startswith("scheme:"):
         return "schemes"
-    if has(text, [
-        "where did my money go",
-        "monthly spending",
-        "spending insight",
-        "spending insights",
-        "money spent",
-        "how much did i spend",
-        "how much i spent",
-        "this month spending",
-        "this month expense",
-        "kharch",
-        "kitna kharch",
-        "is mahine",
+
+    # ── Unambiguous signal checks FIRST — these must never be hijacked ────
+    # Scam: URL present with safety keywords OR explicit scam words
+    if re.search(r"https?://", text) or has(text, [
+        "scam", "fraud", "fake", "phishing", "suspicious", "fishy", "lottery",
+        "won prize", "you have won", "is this real", "is this safe",
+        "is this link", "is this url", "verify this", "check this",
+        "otp maang", "bank details maang",
     ]):
-        return "insights"
-    if has(text, ["debited", "credited", "upi", "refno", "trf to", "a/c", "account debited", "account credited"]):
+        return "scam"
+
+    # Tracker: bank/UPI SMS — very specific keywords
+    if has(text, ["debited", "credited", "upi", "refno", "trf to", "a/c",
+                  "account debited", "account credited"]):
         return "tracker"
-    if has(text, ["mandi", "market price", "price of", "rate of", "crop", "commodity", "bhaav", "bhav", "kaanda", "kanda", "kaande", "tamatar", "टमाटर", "कांदा", "कांदे", "भाव", "भाऊ", "दर", "किंमत"]):
+
+    # Mandi: crop/commodity price — also very specific
+    if has(text, ["mandi", "market price", "price of", "rate of", "crop",
+                  "commodity", "bhaav", "bhav", "kaanda", "kanda", "tamatar",
+                  "टमाटर", "कांदा", "कांदे", "भाव", "भाऊ", "दर", "किंमत"]):
         return "mandi"
-    if has(text, ["change profile", "update profile", "edit profile", "change my", "update my"]):
+
+    # ── PendingAction routing — only AFTER clear signals are ruled out ────
+    planner_pending_actions = {
+        "other_goal_details", "ask_monthly_expense_for_goal_plan",
+        "other_goal_name", "other_goal_amount", "other_goal_duration",
+        "edit_goal_amount", "edit_goal_duration",
+        "ask_this_month_income_for_goal_plan",
+        "ask_farmer_lean_season_for_goal_plan",
+    }
+    pending = user.get("pendingAction") or ""
+    if pending == "mandi_price":
+        return "mandi"
+    if pending in planner_pending_actions:
+        return "planner"
+
+    # ── Remaining content checks ───────────────────────────────────────────
+    if has(text, ["where did my money go", "monthly spending", "spending insight",
+                  "money spent", "how much did i spend", "how much i spent",
+                  "this month spending", "this month expense",
+                  "kharch", "kitna kharch", "is mahine"]):
+        return "insights"
+    if has(text, ["change profile", "update profile", "edit profile",
+                  "change my", "update my"]):
         return "profile"
-    if has(text, ["what is", "explain", "meaning of", "matlab", "kya hota hai", "nav", "sip", "emi", "credit score", "interest"]):
+    if has(text, ["what is", "explain", "meaning of", "matlab", "kya hota hai",
+                  "nav", "sip", "emi", "credit score", "interest"]):
         return "jargon"
-    if has(text, ["scheme", "schemes", "government scheme", "yojana", "yojna", "sarkari", "subsidy", "scholarship", "farmer scheme", "student scheme"]):
+    if has(text, ["scheme", "schemes", "government scheme", "yojana", "yojna",
+                  "sarkari", "subsidy", "scholarship", "farmer scheme", "student scheme"]):
         return "schemes"
     if has(text, ["save", "saving", "goal", "plan", "emergency fund", "education fund"]):
         return "planner"
-    if has(text, ["scam", "fraud", "fake", "phishing", "is this real", "is this safe", "check this", "suspicious", "fishy", "lottery", "won prize", "otp maang", "bank details maang", "verify this", "is this genuine"]):
-        return "scam"
 
     return llm_route(message)
 

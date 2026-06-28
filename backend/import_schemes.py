@@ -1,4 +1,4 @@
-import csv
+import json
 import os
 
 from pymongo import UpdateOne
@@ -14,25 +14,21 @@ def clean(row):
 
 
 def main():
-    path = os.path.join("data", "schemes.csv")
-    count = 0
-    batch = []
+    path = os.path.join("data", "schemes.json")
+    with open(path, encoding="utf-8") as file:
+        data = json.load(file)
 
-    with open(path, encoding="utf-8-sig", newline="") as file:
-        for row in csv.DictReader(file):
-            scheme = clean(row)
-            if not scheme["scheme_name"] or not scheme["slug"]:
-                continue
-            batch.append(UpdateOne({"slug": scheme["slug"]}, {"$set": scheme}, upsert=True))
-            count += 1
-            if len(batch) == 500:
-                schemes.bulk_write(batch, ordered=False)
-                batch = []
+    batch = []
+    for row in data:
+        scheme = clean(row)
+        if not scheme["scheme_name"] or not scheme["slug"]:
+            continue
+        batch.append(UpdateOne({"slug": scheme["slug"]}, {"$set": scheme}, upsert=True))
 
     if batch:
         schemes.bulk_write(batch, ordered=False)
 
-    print(f"Imported {count} schemes")
+    print(f"Imported {len(batch)} schemes")
 
 
 if __name__ == "__main__":

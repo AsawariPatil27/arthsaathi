@@ -11,24 +11,17 @@ def default_user(telegram_id):
         "incomeType": "",
         "occupation": "",
         "monthlyIncome": 0,
-        "thisMonthIncome": 0,
         "lowestMonthIncome": 0,
         "monthlyExpense": 0,
-        "familySize": 0,
-        "earningMembers": 0,
-        "hasInsurance": False,
-        "hasEmergencyFund": False,
-        "emergencyFundAmount": 0,
         "state": "",
         "district": "",
         # Farmer-specific
         "harvestIncome": 0,
-        "harvestMonth": "",
         "leanDurationMonths": 0,
         "leanMonthlyExpense": 0,
         # Planner state
-        "pendingGoal": None,
         "pendingGoals": [],
+        "pendingGoalContext": {},
         "pendingAction": "",
     }
 

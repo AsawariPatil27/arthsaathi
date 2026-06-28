@@ -1,13 +1,20 @@
+import re
+
 from language import to_english
 from users import save_user
 
 # Steps where the user types a free-form answer (not a button callback)
 FREE_TEXT_STEPS = {
-    "familySize", "earningMembers",
-    "emergencyFundAmount",
     "monthlyIncome", "averageIncome", "lowestMonthIncome",
     "monthlyExpense",
-    "state", "district", "harvestMonth",
+    "state", "district",
+    "leanDurationMonths", "leanMonthlyExpense",
+    "harvestIncome",
+}
+
+NUMERIC_STEPS = {
+    "monthlyIncome", "averageIncome", "lowestMonthIncome",
+    "monthlyExpense",
     "leanDurationMonths", "leanMonthlyExpense",
     "harvestIncome",
 }
@@ -19,18 +26,12 @@ COPY = {
         "other": "More languages will come later. For now choose English, Hindi, or Marathi.",
         "incomeType": "Your income type?",
         "occupation": "Choose your occupation.",
-        "familySize": "How many people are in your family?",
-        "earningMembers": "How many people earn in your family?",
-        "insurance": "Do you have health insurance?",
-        "emergency": "Do you already have an emergency fund?",
-        "emergencyAmount": "Approximately how much is in your emergency fund?",
         "salary": "Monthly take-home salary?",
         "averageIncome": "Average monthly income?",
         "lowestIncome": "Lowest month income?",
         "expense": "Monthly expenses?",
         "state": "Which state are you in?",
         "district": "Which district are you in?",
-        "harvestMonth": "Which month is your harvest month?",
         "leanDuration": "How many months is your lean season?",
         "leanExpense": "Monthly expenses during lean season?",
         "harvestIncome": "What is your typical income per harvest?",
@@ -42,18 +43,12 @@ COPY = {
         "other": "बाकी भाषाएं बाद में आएंगी। अभी अंग्रेजी, हिंदी या मराठी चुनें।",
         "incomeType": "आपकी कमाई किस प्रकार की है?",
         "occupation": "अपना काम चुनें।",
-        "familySize": "आपके परिवार में कितने लोग हैं?",
-        "earningMembers": "परिवार में कमाने वाले कितने लोग हैं?",
-        "insurance": "क्या आपके पास स्वास्थ्य बीमा है?",
-        "emergency": "क्या आपके पास पहले से आपातकालीन निधि है?",
-        "emergencyAmount": "आपातकालीन निधि में लगभग कितनी राशि है?",
         "salary": "मासिक हाथ में आने वाली तनख्वाह कितनी है?",
         "averageIncome": "औसत मासिक आय कितनी है?",
         "lowestIncome": "सबसे कम आय वाले महीने में कितनी कमाई होती है?",
         "expense": "मासिक खर्च कितना है?",
         "state": "आप किस राज्य में हैं?",
         "district": "आप किस जिले में हैं?",
-        "harvestMonth": "फसल कटाई का महीना कौन सा है?",
         "leanDuration": "कमाई कम रहने का समय कितने महीने होता है?",
         "leanExpense": "उस समय मासिक खर्च कितना होता है?",
         "harvestIncome": "फसल कटाई पर आपकी आमदनी (कमाई) लगभग कितनी होती है?",
@@ -65,18 +60,12 @@ COPY = {
         "other": "इतर भाषा नंतर येतील. सध्या इंग्रजी, हिंदी किंवा मराठी निवडा.",
         "incomeType": "तुमचे उत्पन्न कोणत्या प्रकारचे आहे?",
         "occupation": "तुमचा व्यवसाय निवडा.",
-        "familySize": "तुमच्या कुटुंबात किती लोक आहेत?",
-        "earningMembers": "कुटुंबात कमावणारे किती लोक आहेत?",
-        "insurance": "तुमच्याकडे आरोग्य विमा आहे का?",
-        "emergency": "तुमच्याकडे आधीपासून आपत्कालीन निधी आहे का?",
-        "emergencyAmount": "आपत्कालीन निधीत अंदाजे किती रक्कम आहे?",
         "salary": "दर महिन्याला हातात येणारा पगार किती आहे?",
         "averageIncome": "सरासरी मासिक उत्पन्न किती आहे?",
         "lowestIncome": "सगळ्यात कमी उत्पन्नाच्या महिन्यात किती कमाई होते?",
         "expense": "मासिक खर्च किती आहे?",
         "state": "तुम्ही कोणत्या राज्यात आहात?",
         "district": "तुम्ही कोणत्या जिल्ह्यात आहात?",
-        "harvestMonth": "पीक कापणीचा महिना कोणता?",
         "leanDuration": "कमी उत्पन्नाचा काळ किती महिने असतो?",
         "leanExpense": "त्या काळात मासिक खर्च किती असतो?",
         "harvestIncome": "पीक कापणीच्या वेळी तुमचे अंदाजे उत्पन्न किती असते?",
@@ -87,7 +76,6 @@ COPY = {
 OPTIONS = {
     "mode": [("voice", "Voice first", "आवाज आधी", "आवाज प्रथम"), ("text", "Visual / text", "दृश्य / मजकूर", "दृश्य / मजकूर")],
     "incomeType": [("fixed", "Fixed income", "निश्चित आय", "निश्चित उत्पन्न"), ("variable", "Variable income", "बदलती आय", "बदलते उत्पन्न")],
-    "yesNo": [("yes", "Yes", "हां", "हो"), ("no", "No", "नहीं", "नाही")],
     "fixedJobs": [
         ("government_employee", "Government Employee", "सरकारी कर्मचारी", "सरकारी कर्मचारी"),
         ("private_employee", "Private Sector Employee", "निजी क्षेत्र कर्मचारी", "खाजगी क्षेत्रातील कर्मचारी"),
@@ -132,8 +120,8 @@ def option_rows(key, user, one_row=False):
 
 
 def number(value):
-    digits = "".join(ch for ch in str(value or "0") if ch.isdigit() or ch == ".")
-    return float(digits) if digits else 0
+    match = re.search(r"\d+(?:\.\d+)?", str(value or ""))
+    return float(match.group(0)) if match else 0
 
 
 def start_onboarding(user):
@@ -146,8 +134,8 @@ def start_onboarding(user):
 def handle_onboarding(user, raw_answer):
     answer = str(raw_answer or "").strip()
     step = user.get("currentStep")
-    # Normalise free-text answers to English/numeric before processing
-    if step in FREE_TEXT_STEPS and answer and not answer.startswith("/"):
+    # Numeric answers must stay raw. Translating plain amounts can distort them.
+    if step in FREE_TEXT_STEPS and step not in NUMERIC_STEPS and answer and not answer.startswith("/"):
         answer = to_english(answer, user.get("language") or "en")
 
     if answer == "/start" or step == "start":
@@ -160,18 +148,8 @@ def handle_onboarding(user, raw_answer):
         user["incomeType"] = "fixed" if answer == "fixed" else "variable"
         return move(user, "occupation", ask(user, "occupation", occupation_buttons(user)))
     if step == "occupation":
-        return set_next(user, "occupation", answer, "familySize")
-    if step == "familySize":
-        return set_next(user, "familySize", number(answer), "earningMembers")
-    if step == "earningMembers":
-        return set_next(user, "earningMembers", number(answer), "hasInsurance")
-    if step == "hasInsurance":
-        return set_next(user, "hasInsurance", answer == "yes", "hasEmergencyFund")
-    if step == "hasEmergencyFund":
-        user["hasEmergencyFund"] = answer == "yes"
-        next_step = "emergencyFundAmount" if user["hasEmergencyFund"] else next_income_step(user)
-        return move(user, next_step, ask_current({**user, "currentStep": next_step}))
-    if step in ["emergencyFundAmount", "monthlyIncome", "averageIncome", "lowestMonthIncome", "harvestIncome", "state", "district", "harvestMonth", "leanDurationMonths", "leanMonthlyExpense", "monthlyExpense"]:
+        return set_next(user, "occupation", answer, next_income_step({**user, "occupation": answer}))
+    if step in ["monthlyIncome", "averageIncome", "lowestMonthIncome", "harvestIncome", "state", "district", "leanDurationMonths", "leanMonthlyExpense", "monthlyExpense"]:
         return save_step(user, step, answer)
     return complete(user)
 
@@ -184,17 +162,15 @@ def set_language(user, answer):
 
 
 def save_step(user, step, answer):
-    value = number(answer) if step not in ["state", "district", "harvestMonth"] else answer
+    value = number(answer) if step not in ["state", "district"] else answer
     user["monthlyIncome" if step == "averageIncome" else step] = value
     next_step = {
-        "emergencyFundAmount": next_income_step(user),
         "monthlyIncome": "monthlyExpense",
         "averageIncome": "lowestMonthIncome",
         "lowestMonthIncome": "monthlyExpense",
         "harvestIncome": "state",
         "state": "district",
-        "district": "harvestMonth",
-        "harvestMonth": "leanDurationMonths",
+        "district": "leanDurationMonths",
         "leanDurationMonths": "leanMonthlyExpense",
     }.get(step)
     return complete(user) if not next_step else move(user, next_step, ask_current({**user, "currentStep": next_step}))
@@ -214,11 +190,6 @@ def move(user, step, response):
 def ask_current(user):
     key = {
         "incomeType": "incomeType",
-        "familySize": "familySize",
-        "earningMembers": "earningMembers",
-        "hasInsurance": "insurance",
-        "hasEmergencyFund": "emergency",
-        "emergencyFundAmount": "emergencyAmount",
         "monthlyIncome": "salary",
         "averageIncome": "averageIncome",
         "lowestMonthIncome": "lowestIncome",
@@ -226,11 +197,10 @@ def ask_current(user):
         "harvestIncome": "harvestIncome",
         "state": "state",
         "district": "district",
-        "harvestMonth": "harvestMonth",
         "leanDurationMonths": "leanDuration",
         "leanMonthlyExpense": "leanExpense",
     }[user["currentStep"]]
-    buttons = option_rows("incomeType", user, True) if user["currentStep"] == "incomeType" else option_rows("yesNo", user, True) if user["currentStep"] in ["hasInsurance", "hasEmergencyFund"] else []
+    buttons = option_rows("incomeType", user, True) if user["currentStep"] == "incomeType" else []
     return ask(user, key, buttons)
 
 
