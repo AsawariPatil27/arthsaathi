@@ -57,22 +57,11 @@ def route_intent(user, message):
     # Mandi: crop/commodity price — also very specific
     if has(text, ["mandi", "market price", "price of", "rate of", "crop",
                   "commodity", "bhaav", "bhav", "kaanda", "kanda", "tamatar",
-                  "टमाटर", "कांदा", "कांदे", "भाव", "भाऊ", "दर", "किंमत"]):
+                  "wheat", "rice", "potato", "onion", "tomato", "cotton",
+                  "soybean", "mustard", "garlic", "ginger", "maize", "pulses",
+                  "गेहूं", "चावल", "आलू", "प्याज", "टमाटर", "लहसुन", "अदरक",
+                  "कांदा", "कांदे", "भाव", "भाऊ", "दर", "किंमत"]):
         return "mandi"
-
-    # ── PendingAction routing — only AFTER clear signals are ruled out ────
-    planner_pending_actions = {
-        "other_goal_details", "ask_monthly_expense_for_goal_plan",
-        "other_goal_name", "other_goal_amount", "other_goal_duration",
-        "edit_goal_amount", "edit_goal_duration",
-        "ask_this_month_income_for_goal_plan",
-        "ask_farmer_lean_season_for_goal_plan",
-    }
-    pending = user.get("pendingAction") or ""
-    if pending == "mandi_price":
-        return "mandi"
-    if pending in planner_pending_actions:
-        return "planner"
 
     # ── Remaining content checks ───────────────────────────────────────────
     if has(text, ["where did my money go", "monthly spending", "spending insight",
@@ -90,6 +79,20 @@ def route_intent(user, message):
                   "sarkari", "subsidy", "scholarship", "farmer scheme", "student scheme"]):
         return "schemes"
     if has(text, ["save", "saving", "goal", "plan", "emergency fund", "education fund"]):
+        return "planner"
+
+    # ── PendingAction routing — only AFTER explicit signals are ruled out ──
+    planner_pending_actions = {
+        "other_goal_details", "ask_monthly_expense_for_goal_plan",
+        "other_goal_name", "other_goal_amount", "other_goal_duration",
+        "edit_goal_amount", "edit_goal_duration",
+        "ask_this_month_income_for_goal_plan",
+        "ask_farmer_lean_season_for_goal_plan",
+    }
+    pending = user.get("pendingAction") or ""
+    if pending == "mandi_price":
+        return "mandi"
+    if pending in planner_pending_actions:
         return "planner"
 
     return llm_route(message)

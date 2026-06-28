@@ -12,8 +12,9 @@ from onboarding import handle_onboarding
 from users import get_or_create_user
 from voice import voice_to_text
 
-app = FastAPI()
+from menu import get_menu_response, handle_menu_callback
 
+app = FastAPI()
 
 
 def handle_message(user, message):
@@ -44,6 +45,11 @@ def chat(payload: dict):
     print(f"[CHAT] {user['telegramId']}: {message}")
     if not user.get("profileCompleted") or message == "/start":
         return handle_onboarding(user, message)
+    if message.strip().lower() == "/menu":
+        from users import save_user
+        user["pendingAction"] = ""
+        save_user(user)
+        return get_menu_response(user)
     return handle_message(user, message)
 
 
@@ -54,6 +60,9 @@ def callback(payload: dict):
     print(f"[CALLBACK] {user['telegramId']}: {data}")
     if not user.get("profileCompleted"):
         return handle_onboarding(user, data)
+    if data.startswith("menu:"):
+        action = data.split(":", 1)[1]
+        return handle_menu_callback(user, action)
     return handle_message(user, data)
 
 

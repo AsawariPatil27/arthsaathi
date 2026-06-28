@@ -88,9 +88,15 @@ async def voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
             os.remove(path)
 
 
+async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    data = post("/chat", {**profile(update), "message": "/menu"})
+    await send(update, data)
+
+
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("menu", menu))
     app.add_handler(CallbackQueryHandler(callback))
     app.add_handler(MessageHandler(filters.VOICE, voice))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text))

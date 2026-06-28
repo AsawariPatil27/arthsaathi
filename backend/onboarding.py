@@ -219,9 +219,11 @@ def complete(user):
     user["profileCompleted"] = True
     save_user(user)
 
-    from ai.agents.planner_agent import start_plan
+    from menu import get_menu_response
     from language import to_user_language
 
-    plan = start_plan(user)
-    plan["reply"] = f"{COPY['en']['done']}\n\n{plan['reply']}"
-    return to_user_language(plan, lang(user))
+    menu_resp = get_menu_response(user)
+    # Add the completion greeting to the top of the menu reply
+    done_msg = COPY[lang(user)]["done"]
+    menu_resp["reply"] = f"{done_msg}\n\n{menu_resp['reply']}"
+    return menu_resp
