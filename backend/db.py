@@ -13,7 +13,6 @@ goals = db.goals
 transactions = db.transactions
 merchant_categories = db.merchant_categories
 schemes = db.schemes
-glossary = db.glossary
 conversations = db.conversations
 
 try:
@@ -25,7 +24,6 @@ try:
     merchant_categories.create_index("merchant", unique=True)
     schemes.create_index("slug", unique=True)
     schemes.create_index([("scheme_name", "text"), ("details", "text"), ("eligibility", "text"), ("tags", "text")])
-    glossary.create_index("term", unique=True)
     conversations.create_index("telegramId", unique=True)
 except PyMongoError as error:
     print(f"[MongoDB] Index creation skipped: {error}")
