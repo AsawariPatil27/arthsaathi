@@ -51,7 +51,8 @@ RULES:
 2. If a URL (http or https) appears in the message, route to scam — unless it is clearly an official government domain (.gov.in / nic.in).
 3. Distinguish tracker (user reporting a PAST transaction) from planner (user PLANNING future savings).
 4. If a message contains "what is" or "explain" or "kya hai" before a financial term, it is jargon — not schemes or planner.
-5. Default to planner if the intent is genuinely unclear.
+5. If a "Previous message" is provided and the current message is a follow-up (e.g. "I didn't understand", "explain again", "give example") with no new topic, route to the same category as the previous message.
+6. Default to planner if the intent is genuinely unclear.
 
 Return ONLY this JSON and nothing else:
 {"route": "<planner|tracker|insights|mandi|profile|schemes|jargon|scam>"}"""
@@ -79,13 +80,27 @@ def route_intent(user, message):
     if pending in PLANNER_PENDING_ACTIONS:
         return "planner"
 
-    return llm_route(message)
+    last = _last_user_topic(user.get("telegramId", ""))
+    return llm_route(message, context=f"Previous message: {last}" if last else "")
 
 
-def llm_route(message):
+def _last_user_topic(telegram_id):
+    try:
+        from db import conversations
+        doc = conversations.find_one({"telegramId": str(telegram_id)}) or {}
+        for msg in reversed(doc.get("messages", [])):
+            if msg.get("role") == "user":
+                return str(msg.get("content", ""))
+    except Exception:
+        pass
+    return ""
+
+
+def llm_route(message, context=""):
+    system = ROUTER_PROMPT + (f"\n\nContext: {context}" if context else "")
     try:
         raw = llm([
-            {"role": "system", "content": ROUTER_PROMPT},
+            {"role": "system", "content": system},
             {"role": "user", "content": str(message)},
         ])
         m = re.search(r"\{[^{}]*\}", raw, re.S)

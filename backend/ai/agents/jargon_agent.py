@@ -63,52 +63,6 @@ Return STRICTLY this JSON schema and no other keys:
 }"""
 
 
-PRODUCT_PATTERNS = [
-    r"\bulip\b",
-    r"\bmutual\s+funds?\b",
-    r"\bfixed\s+deposits?\b",
-    r"\brecurring\s+deposits?\b",
-    r"\bfds?\b",
-    r"\brds?\b",
-    r"\bsips?\b",
-    r"\binsurance\b",
-    r"\blic\b",
-    r"\bppf\b",
-    r"\bnps\b",
-    r"\belss\b",
-    r"\bepf\b",
-    r"\bshares\b",
-    r"\bstocks\b",
-    r"\bbonds\b",
-    r"\betfs?\b",
-    r"\bsgb\b",
-    r"\bgold\s+bonds?\b",
-    r"\bprovident\s+funds?\b",
-]
-
-FOLLOW_UP_PATTERNS = [
-    r"explain\s+(again|more)",
-    r"give\s+(another|more|an|some)?\s*example",
-    r"(did not|didn't|dont|don't)\s+understand",
-    r"tell\s+me\s+more",
-    r"elaborate\b",
-    r"can\s+you\s+repeat",
-    r"could\s+you\s+repeat",
-    r"go\s+deeper",
-    r"repeat\s+that",
-    r"not\s+clear",
-    r"still\s+confused",
-]
-
-SCENARIO_PATTERNS = [
-    r"\bi\s+am\s+(a|an)\b",
-    r"\bmy\s+(income|salary|expense|family|situation|goal|job|occupation)\b",
-    r"\bi\s+(earn|save|spend|work|have|want|need)\b",
-    r"\bhow\s+(can|should|do)\s+i\b",
-    r"\bfor\s+(my|our)\s+(child|children|education|marriage|wedding|future|retirement)\b",
-    r"\bi'm\s+(a|an)\b",
-]
-
 
 def jargon_agent(user, message):
     telegram_id = str(user.get("telegramId", ""))
@@ -120,9 +74,8 @@ def jargon_agent(user, message):
     if not profile.get("profileCompleted"):
         return reply("It looks like your profile onboarding is incomplete. Please finish the registration steps first.")
 
-    intent = classify_intent(message)
     history = get_conversation_history(telegram_id)
-    messages = build_prompt(profile, history, str(message or ""), intent)
+    messages = build_prompt(profile, history, str(message or ""))
 
     try:
         raw_response = llm(messages)
@@ -155,31 +108,15 @@ def active_goals(telegram_id):
     return cleaned
 
 
-def classify_intent(message):
-    text = str(message or "").lower().strip()
-
-    if re.search(r"\b(vs|versus|compare|difference\s+between|diff\b)\b", text) or " vs " in text:
-        return "compare_concepts"
-    if any(re.search(pattern, text) for pattern in FOLLOW_UP_PATTERNS):
-        return "follow_up"
-    if any(re.search(pattern, text) for pattern in SCENARIO_PATTERNS):
-        return "scenario_based_learning"
-    if any(re.search(pattern, text) for pattern in [r"\bwhat\s+(is|are)\b", r"\bdefine\b", r"\bmeaning\s+of\b", r"\bconcept\s+of\b"]):
-        return "explain_concept"
-    if any(re.search(pattern, text) for pattern in PRODUCT_PATTERNS):
-        return "explain_product"
-    return "explain_concept"
-
-
-def build_prompt(profile, history, current_question, intent):
-    user_context = derive_user_context(profile, intent)
+def build_prompt(profile, history, current_question):
+    user_context = derive_user_context(profile)
     messages = [{"role": "system", "content": f"{SYSTEM_PROMPT}\n\nUser Context:\n{user_context}"}]
     messages.extend(history)
     messages.append({"role": "user", "content": current_question})
     return messages
 
 
-def derive_user_context(profile, intent):
+def derive_user_context(profile):
     occupation = humanize(profile.get("occupation")) or "user"
     district = profile.get("district") or "their district"
     state = profile.get("state") or "their state"
