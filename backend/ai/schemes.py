@@ -191,7 +191,7 @@ def quick_reason(user, scheme):
 
 
 def youtube_links(scheme_name, language):
-    query = f"{scheme_name} apply kaise kare {language}"
+    query = f"{scheme_name} how to apply {language}"
     key = os.getenv("YOUTUBE_API_KEY", "")
     if not key:
         return [f"https://www.youtube.com/results?search_query={quote_plus(query)}"]
