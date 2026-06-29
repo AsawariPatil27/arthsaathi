@@ -23,6 +23,39 @@ ROUTES = {
     "scam": scam_agent,
 }
 
+VALID_ROUTES = frozenset(ROUTES)
+
+PLANNER_PENDING_ACTIONS = frozenset({
+    "other_goal_details", "ask_monthly_expense_for_goal_plan",
+    "other_goal_name", "other_goal_amount", "other_goal_duration",
+    "edit_goal_amount", "edit_goal_duration",
+    "ask_this_month_income_for_goal_plan",
+    "ask_farmer_lean_season_for_goal_plan",
+})
+
+ROUTER_PROMPT = """You are ArthSaathi's intent router for a rural Indian financial assistant.
+Classify the user message into exactly one route and return ONLY valid JSON — no explanation, no markdown.
+
+ROUTES and when to use each:
+- planner   : User wants to save money, set a savings goal, build an emergency/education/wedding fund, or asks about how much they have saved.
+- tracker   : A bank or UPI SMS forwarded by the user, OR the user reporting a specific past transaction (debited, credited, money sent/received, UPI ref, A/C no, REFNO).
+- insights  : User asking where their money went, monthly spending summary, or expense breakdown by category. E.g. "how much did I spend", "kharch kitna hua", "paise kahan gaye", "is mahine kitna gaya".
+- mandi     : User asking for a crop or commodity market price. E.g. onion/kaanda/kanda price, wheat/gehu rate, tamatar bhav, mandi price. Includes Hindi and Marathi crop names.
+- profile   : User wants to update or change their own profile info — income, expenses, language, district, name, or occupation.
+- schemes   : User asking about government schemes, yojana, subsidies, scholarships, or benefits for farmers/students/women.
+- jargon    : User asking to explain a financial term or concept. E.g. "what is SIP", "explain EMI", "kya hota hai credit score", "what does NAV mean".
+- scam      : User sharing a suspicious message or link, asking if something is fraud/fake/lottery/scam, or worried about OTP or bank detail requests. Any http/https URL is a strong scam signal.
+
+RULES:
+1. Users are rural Indians — messages may be in Hindi, Marathi, Hinglish, or mixed. Understand them semantically, not just by keywords.
+2. If a URL (http or https) appears in the message, route to scam — unless it is clearly an official government domain (.gov.in / nic.in).
+3. Distinguish tracker (user reporting a PAST transaction) from planner (user PLANNING future savings).
+4. If a message contains "what is" or "explain" or "kya hai" before a financial term, it is jargon — not schemes or planner.
+5. Default to planner if the intent is genuinely unclear.
+
+Return ONLY this JSON and nothing else:
+{"route": "<planner|tracker|insights|mandi|profile|schemes|jargon|scam>"}"""
+
 
 def run_graph(user, message):
     route = route_intent(user, message)
@@ -33,66 +66,17 @@ def run_graph(user, message):
 def route_intent(user, message):
     text = str(message or "").lower()
 
-    # ── Machine callbacks always go direct ────────────────────────────────
+    # Machine-generated callbacks — not natural language, bypass LLM
     if text.startswith(("choose_goal:", "confirm_goal:", "edit_goal:")):
         return "planner"
     if text.startswith("scheme:"):
         return "schemes"
 
-    # ── Unambiguous signal checks FIRST — these must never be hijacked ────
-    # Scam: URL present with safety keywords OR explicit scam words
-    if re.search(r"https?://", text) or has(text, [
-        "scam", "fraud", "fake", "phishing", "suspicious", "fishy", "lottery",
-        "won prize", "you have won", "is this real", "is this safe",
-        "is this link", "is this url", "verify this", "check this",
-        "otp maang", "bank details maang",
-    ]):
-        return "scam"
-
-    # Tracker: bank/UPI SMS — very specific keywords
-    if has(text, ["debited", "credited", "upi", "refno", "trf to", "a/c",
-                  "account debited", "account credited"]):
-        return "tracker"
-
-    # Mandi: crop/commodity price — also very specific
-    if has(text, ["mandi", "market price", "price of", "rate of", "crop",
-                  "commodity", "bhaav", "bhav", "kaanda", "kanda", "tamatar",
-                  "wheat", "rice", "potato", "onion", "tomato", "cotton",
-                  "soybean", "mustard", "garlic", "ginger", "maize", "pulses",
-                  "गेहूं", "चावल", "आलू", "प्याज", "टमाटर", "लहसुन", "अदरक",
-                  "कांदा", "कांदे", "भाव", "भाऊ", "दर", "किंमत"]):
-        return "mandi"
-
-    # ── Remaining content checks ───────────────────────────────────────────
-    if has(text, ["where did my money go", "monthly spending", "spending insight",
-                  "money spent", "how much did i spend", "how much i spent",
-                  "this month spending", "this month expense",
-                  "kharch", "kitna kharch", "is mahine"]):
-        return "insights"
-    if has(text, ["change profile", "update profile", "edit profile",
-                  "change my", "update my"]):
-        return "profile"
-    if has(text, ["what is", "explain", "meaning of", "matlab", "kya hota hai",
-                  "nav", "sip", "emi", "credit score", "interest"]):
-        return "jargon"
-    if has(text, ["scheme", "schemes", "government scheme", "yojana", "yojna",
-                  "sarkari", "subsidy", "scholarship", "farmer scheme", "student scheme"]):
-        return "schemes"
-    if has(text, ["save", "saving", "goal", "plan", "emergency fund", "education fund"]):
-        return "planner"
-
-    # ── PendingAction routing — only AFTER explicit signals are ruled out ──
-    planner_pending_actions = {
-        "other_goal_details", "ask_monthly_expense_for_goal_plan",
-        "other_goal_name", "other_goal_amount", "other_goal_duration",
-        "edit_goal_amount", "edit_goal_duration",
-        "ask_this_month_income_for_goal_plan",
-        "ask_farmer_lean_season_for_goal_plan",
-    }
+    # Server-side pending state — LLM has no visibility into this
     pending = user.get("pendingAction") or ""
     if pending == "mandi_price":
         return "mandi"
-    if pending in planner_pending_actions:
+    if pending in PLANNER_PENDING_ACTIONS:
         return "planner"
 
     return llm_route(message)
@@ -101,30 +85,12 @@ def route_intent(user, message):
 def llm_route(message):
     try:
         raw = llm([
-            {
-                "role": "system",
-                "content": (
-                    "You are ArthSaathi's intent router. Return only valid JSON. No markdown. "
-                    "Output exactly one of: {\"route\":\"planner\"}, {\"route\":\"tracker\"}, "
-                    "{\"route\":\"insights\"}, {\"route\":\"mandi\"}, {\"route\":\"profile\"}, {\"route\":\"schemes\"}, {\"route\":\"jargon\"}, {\"route\":\"scam\"}. "
-                    "planner: savings plans, goals, emergency fund, education fund, saved amount. "
-                    "tracker: bank SMS, debit, credit, UPI, transaction, expense entry. "
-                    "insights: where money went, monthly spending, spending by category. "
-                    "mandi: crop/commodity/market/mandi prices, bhaav, rate, onion/kaanda/tomato. "
-                    "profile: change/update/edit profile fields like income, expense, language, district. "
-                    "schemes: government schemes, yojana/yojna, sarkari benefits, subsidy, scholarship, farmer/student benefits. "
-                    "jargon: explain financial words like SIP, NAV, EMI, credit score, interest, insurance terms. "
-                    "scam: check if a message is a scam/fraud/phishing, verify suspicious messages, lottery wins, OTP/bank detail requests."
-                ),
-            },
+            {"role": "system", "content": ROUTER_PROMPT},
             {"role": "user", "content": str(message)},
         ])
         m = re.search(r"\{[^{}]*\}", raw, re.S)
-        return json.loads(m.group(0) if m else "{}").get("route", "planner")
+        route = json.loads(m.group(0) if m else "{}").get("route", "planner")
+        return route if route in VALID_ROUTES else "planner"
     except Exception as error:
         print(f"[GRAPH LLM ROUTE FALLBACK] {error}")
         return "planner"
-
-
-def has(text, words):
-    return any(word in text for word in words)
