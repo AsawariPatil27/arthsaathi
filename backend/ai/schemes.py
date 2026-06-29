@@ -5,6 +5,8 @@ from urllib.parse import quote_plus
 
 import requests
 
+from ai.config.llm import llm
+
 
 # Load schemes once at startup from the JSON file
 _DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "schemes.json")
@@ -92,7 +94,7 @@ def scheme_details(user, slug):
     apply_line = f"\n\nApply here: {link}" if link else ""
     reply = (
         f"{scheme['scheme_name']}\n\n"
-        f"Why you may be eligible: {why_eligible(user, scheme)}\n\n"
+        f"Why you may be eligible: {quick_reason(user, scheme)}\n\n"
         f"Benefit: {short(scheme.get('benefits'), 500)}\n\n"
         f"Documents: {short(scheme.get('documents'), 500)}\n\n"
         f"How to apply: {short(scheme.get('application'), 700)}"
@@ -170,17 +172,22 @@ def has_explicit_farmer_request(message):
 
 
 def quick_reason(user, scheme):
-    text = " ".join(str(scheme.get(field, "")) for field in ["eligibility", "details", "tags", "schemeCategory"]).lower()
     occupation = str(user.get("occupation") or "").replace("_", " ")
-    if occupation and occupation.lower() in text:
-        return f"Your profile says you are a {occupation}, and this scheme mentions that group."
-    if occupation:
-        return f"This scheme's keywords match your {occupation} profile or request. Please check final eligibility before applying."
-    return "This scheme's keywords match your request. Please check final eligibility before applying."
-
-
-def why_eligible(user, scheme):
-    return quick_reason(user, scheme)
+    try:
+        return llm([
+            {"role": "system", "content": (
+                "You are ArthSaathi. In one short sentence, explain why this government scheme "
+                "may be relevant to this user based on their occupation. Be specific and simple. "
+                "Do not recommend applying. Do not use jargon."
+            )},
+            {"role": "user", "content": (
+                f"User occupation: {occupation}\n"
+                f"Scheme: {scheme.get('scheme_name')}\n"
+                f"Eligibility: {str(scheme.get('eligibility') or '')[:300]}"
+            )},
+        ])
+    except Exception:
+        return f"This scheme may match your {occupation} profile. Please check eligibility before applying."
 
 
 def youtube_links(scheme_name, language):
@@ -207,8 +214,3 @@ def short(value, size=260):
 
 def has(text, words):
     return any(word in text for word in words)
-
-
-def money(value):
-    number = re.sub(r"[^0-9.]", "", str(value or "0"))
-    return float(number or 0)

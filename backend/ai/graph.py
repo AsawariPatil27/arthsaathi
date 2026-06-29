@@ -8,6 +8,7 @@ from ai.agents.scam_agent import scam_agent
 from ai.agents.tracker_agent import tracker_agent
 from ai.config.llm import llm
 from ai.mandi_prices import mandi_price_reply
+from db import conversations
 from ai.profile_update import update_profile_from_message
 from ai.schemes import scheme_reply
 
@@ -26,11 +27,11 @@ ROUTES = {
 VALID_ROUTES = frozenset(ROUTES)
 
 PLANNER_PENDING_ACTIONS = frozenset({
-    "other_goal_details", "ask_monthly_expense_for_goal_plan",
-    "other_goal_name", "other_goal_amount", "other_goal_duration",
-    "edit_goal_amount", "edit_goal_duration",
+    "ask_monthly_expense_for_goal_plan",
     "ask_this_month_income_for_goal_plan",
     "ask_farmer_lean_season_for_goal_plan",
+    "other_goal_name", "other_goal_amount", "other_goal_duration",
+    "edit_goal_amount", "edit_goal_duration",
 })
 
 ROUTER_PROMPT = """You are ArthSaathi's intent router for a rural Indian financial assistant.
@@ -86,7 +87,6 @@ def route_intent(user, message):
 
 def _last_user_topic(telegram_id):
     try:
-        from db import conversations
         doc = conversations.find_one({"telegramId": str(telegram_id)}) or {}
         for msg in reversed(doc.get("messages", [])):
             if msg.get("role") == "user":

@@ -101,11 +101,7 @@ def load_user_profile(user, telegram_id):
 
 def active_goals(telegram_id):
     rows = goals.find({"telegramId": str(telegram_id), "status": "active"}).sort("priority", 1)
-    cleaned = []
-    for row in rows:
-        row.pop("_id", None)
-        cleaned.append(row)
-    return cleaned
+    return [{k: v for k, v in row.items() if k != "_id"} for row in rows]
 
 
 def build_prompt(profile, history, current_question):
@@ -153,13 +149,16 @@ def get_conversation_history(telegram_id, limit_turns=10):
 
 
 def save_conversation_turn(telegram_id, user_message, assistant_message, limit_turns=10):
-    user_item = {"role": "user", "content": user_message, "timestamp": datetime.utcnow()}
-    assistant_item = {"role": "assistant", "content": assistant_message, "timestamp": datetime.utcnow()}
-    doc = conversations.find_one({"telegramId": str(telegram_id)}) or {}
-    messages = (doc.get("messages", []) + [user_item, assistant_item])[-(limit_turns * 2):]
+    now = datetime.utcnow()
     conversations.update_one(
         {"telegramId": str(telegram_id)},
-        {"$set": {"messages": messages, "updatedAt": datetime.utcnow()}},
+        {
+            "$push": {"messages": {"$each": [
+                {"role": "user", "content": user_message, "timestamp": now},
+                {"role": "assistant", "content": assistant_message, "timestamp": now},
+            ], "$slice": -(limit_turns * 2)}},
+            "$set": {"updatedAt": now},
+        },
         upsert=True,
     )
 
