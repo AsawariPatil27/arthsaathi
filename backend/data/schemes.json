@@ -10,20 +10,12 @@
     "level": "Central",
     "schemeCategory": "Agriculture & Farmer Welfare",
     "tags": "farmers, agriculture, income support, dbt, landholding",
-    "applicationLink": "https://pmkisan.gov.in/"
-  },
-  {
-    "scheme_name": "Kisan Credit Card",
-    "slug": "kcc",
-    "details": "The Kisan Credit Card scheme provides timely and flexible institutional credit to farmers for crop cultivation, post-harvest needs, allied agricultural activities, and working capital requirements.",
-    "benefits": "Farmers get short-term credit through a card-based limit. Interest subvention and prompt repayment incentives may reduce the effective interest burden for eligible borrowers.",
-    "eligibility": "Individual farmers, joint borrowers, owner cultivators, tenant farmers, oral lessees, sharecroppers, Self Help Groups, and Joint Liability Groups engaged in farming or allied activities can apply.",
-    "application": "Applications can be submitted to participating banks, cooperative banks, regional rural banks, or through bank portals. The bank assesses crop area, scale of finance, repayment capacity, and land or tenancy details.",
-    "documents": "Application form, Aadhaar Card, identity proof, address proof, landholding or tenancy documents, cropping details, bank account details, photographs.",
-    "level": "Central",
-    "schemeCategory": "Agriculture & Credit",
-    "tags": "farmers, credit card, crop loan, agriculture loan, kisan",
-    "applicationLink": "https://www.myscheme.gov.in/schemes/kcc"
+    "applicationLink": "https://pmkisan.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=KMkNebMJiD0",
+      "https://www.youtube.com/watch?v=Uq9ktF-QycY",
+      "https://www.youtube.com/watch?v=eaD5iRiTh94"
+    ]
   },
   {
     "scheme_name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
@@ -36,397 +28,30 @@
     "level": "Central",
     "schemeCategory": "Agriculture Insurance",
     "tags": "farmers, crop insurance, fasal bima, risk cover, agriculture",
-    "applicationLink": "https://pmfby.gov.in/"
+    "applicationLink": "https://pmfby.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=pDw2xZ2Tces",
+      "https://www.youtube.com/watch?v=U98tSvvXd98",
+      "https://www.youtube.com/watch?v=Hk9FIASKdqk"
+    ]
   },
   {
-    "scheme_name": "Pradhan Mantri Kisan Urja Suraksha Evam Utthan Mahabhiyan (PM-KUSUM)",
-    "slug": "pm-kusum",
-    "details": "PM-KUSUM promotes solar energy use in agriculture by supporting solar pumps, solarization of grid-connected pumps, and decentralized renewable power generation.",
-    "benefits": "Farmers may receive subsidy and financing support for solar pumps or solar power systems, reducing diesel/electricity dependence and irrigation costs.",
-    "eligibility": "Individual farmers, groups of farmers, farmer producer organizations, panchayats, cooperatives, and water user associations may be eligible depending on component and state implementation rules.",
-    "application": "Applications are usually submitted through the state renewable energy department, agriculture department, DISCOM, or designated state portal.",
-    "documents": "Aadhaar Card, land documents, bank account details, electricity connection details where applicable, farmer registration, quotation or project documents where required.",
+    "scheme_name": "Kisan Credit Card",
+    "slug": "kcc",
+    "details": "The Kisan Credit Card scheme provides timely and flexible institutional credit to farmers for crop cultivation, post-harvest needs, allied agricultural activities, and working capital requirements.",
+    "benefits": "Farmers get short-term credit through a card-based limit. Interest subvention and prompt repayment incentives may reduce the effective interest burden for eligible borrowers.",
+    "eligibility": "Individual farmers, joint borrowers, owner cultivators, tenant farmers, oral lessees, sharecroppers, Self Help Groups, and Joint Liability Groups engaged in farming or allied activities can apply.",
+    "application": "Applications can be submitted to participating banks, cooperative banks, regional rural banks, or through bank portals. The bank assesses crop area, scale of finance, repayment capacity, and land or tenancy details.",
+    "documents": "Application form, Aadhaar Card, identity proof, address proof, landholding or tenancy documents, cropping details, bank account details, photographs.",
     "level": "Central",
-    "schemeCategory": "Agriculture & Renewable Energy",
-    "tags": "farmers, solar pump, irrigation, renewable energy, pm kusum",
-    "applicationLink": "https://pmkusum.mnre.gov.in/"
-  },
-  {
-    "scheme_name": "Agriculture Infrastructure Fund",
-    "slug": "aif",
-    "details": "The Agriculture Infrastructure Fund provides medium to long-term financing support for post-harvest management infrastructure and community farming assets.",
-    "benefits": "Eligible projects can receive interest subvention, credit guarantee support, and access to loans for warehouses, cold chains, processing units, grading facilities, and other agri-infrastructure.",
-    "eligibility": "Farmers, FPOs, PACS, cooperatives, agri-entrepreneurs, startups, SHGs, joint liability groups, state agencies, and other eligible entities can apply for approved infrastructure projects.",
-    "application": "Applicants can apply through the Agriculture Infrastructure Fund portal and participating lending institutions with project details and financial documents.",
-    "documents": "Aadhaar or entity registration documents, project report, land or lease proof, bank details, financial statements where applicable, quotations, approvals required by lender.",
-    "level": "Central",
-    "schemeCategory": "Agriculture Infrastructure & Finance",
-    "tags": "agriculture infrastructure, fpo, warehouse, cold storage, agri business",
-    "applicationLink": "https://agriinfra.dac.gov.in/"
-  },
-  {
-    "scheme_name": "RKVY Soil Health and Fertility - Soil Health Card",
-    "slug": "rkvy-soil-health-card",
-    "details": "The Soil Health Card initiative provides farmers with soil test-based information on nutrient status and crop-wise fertilizer recommendations.",
-    "benefits": "Farmers receive soil analysis and recommendations that help optimize fertilizer use, reduce input costs, and improve soil fertility and crop productivity.",
-    "eligibility": "Farmers across India can benefit when soil samples are collected and tested under the programme through state agriculture departments and authorized labs.",
-    "application": "Farmers can contact local agriculture officers, Krishi Vigyan Kendras, or state agriculture departments for soil sample collection and Soil Health Card issuance.",
-    "documents": "Farmer identity details, land details, soil sample information, mobile number, Aadhaar where required by state process.",
-    "level": "Central",
-    "schemeCategory": "Agriculture & Soil Health",
-    "tags": "soil health card, farmers, fertilizer, soil testing, rkvy",
-    "applicationLink": "https://soilhealth.dac.gov.in/"
-  },
-  {
-    "scheme_name": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
-    "slug": "pmksy",
-    "details": "PMKSY aims to expand irrigation coverage and improve water-use efficiency in agriculture through the themes of Har Khet Ko Pani and Per Drop More Crop.",
-    "benefits": "Supports irrigation infrastructure, micro-irrigation, water conservation, watershed development, and efficient water management for better crop productivity.",
-    "eligibility": "Farmers, farmer groups, water user associations, and eligible agricultural landholders may benefit depending on the component and state-specific guidelines.",
-    "application": "Applications are generally routed through state agriculture, horticulture, irrigation, or watershed departments and local implementing agencies.",
-    "documents": "Aadhaar Card, land records, bank account details, farmer registration, irrigation project details, quotations where applicable.",
-    "level": "Central",
-    "schemeCategory": "Agriculture & Irrigation",
-    "tags": "farmers, irrigation, water conservation, drip irrigation, pmksy",
-    "applicationLink": "https://pmksy.gov.in/"
-  },
-  {
-    "scheme_name": "NISHTHA - National Initiative for School Heads' and Teachers' Holistic Advancement",
-    "slug": "nishtha",
-    "details": "NISHTHA is a capacity-building programme for school teachers and heads to improve classroom practices, learning outcomes, inclusive education, and school leadership.",
-    "benefits": "Teachers receive structured training modules, professional development resources, and certification support through online and blended modes.",
-    "eligibility": "School teachers, school heads, principals, and education functionaries covered by the relevant school education department or training cohort are eligible.",
-    "application": "Training is generally accessed through DIKSHA or through nominations and rollout by state/UT education departments, SCERTs, DIETs, and school authorities.",
-    "documents": "Teacher ID or employee details, school details, mobile number, DIKSHA login credentials, department nomination where applicable.",
-    "level": "Central",
-    "schemeCategory": "Teacher Training & Education Quality",
-    "tags": "teachers, school heads, training, nishtha, professional development",
-    "applicationLink": "https://diksha.gov.in/"
-  },
-  {
-    "scheme_name": "DIKSHA - Digital Infrastructure for Knowledge Sharing",
-    "slug": "diksha",
-    "details": "DIKSHA is a national digital platform for school education that provides e-content, teacher training modules, textbooks with QR-linked resources, and learning material.",
-    "benefits": "Teachers and students can access digital courses, teaching-learning material, assessments, and certificates for completed training modules.",
-    "eligibility": "Teachers, students, school leaders, teacher educators, and education officials can use DIKSHA. Specific courses may be limited to assigned cohorts.",
-    "application": "Users can access DIKSHA through the website or mobile app, sign in with mobile/email or state credentials, and enroll in available courses.",
-    "documents": "Mobile number or email, teacher/school details where required, state credentials for assigned training.",
-    "level": "Central",
-    "schemeCategory": "Digital Education",
-    "tags": "teachers, students, digital learning, diksha, e-content",
-    "applicationLink": "https://diksha.gov.in/"
-  },
-  {
-    "scheme_name": "National Awards to Teachers (NAT)",
-    "slug": "national-awards-to-teachers",
-    "details": "National Awards to Teachers recognize outstanding teachers who have made significant contributions to improving school education and student learning.",
-    "benefits": "Selected teachers receive national recognition, award certificate, medal, and award benefits as notified by the government.",
-    "eligibility": "Regular teachers and heads of schools from eligible schools can apply or be nominated, subject to service, performance, and contribution criteria specified in annual guidelines.",
-    "application": "Applications are submitted through the official national awards portal during the notified application window, followed by district, state, and national-level evaluation.",
-    "documents": "Teacher profile, service details, school details, achievements, supporting evidence, photographs or videos where requested, identity documents.",
-    "level": "Central",
-    "schemeCategory": "Teacher Recognition",
-    "tags": "teachers, national award, school education, recognition, nat",
-    "applicationLink": "https://nationalawardstoteachers.education.gov.in/"
-  },
-  {
-    "scheme_name": "AICTE-National Initiative for Training of Technical Teachers",
-    "slug": "aicte-nitt",
-    "details": "This AICTE scheme supports induction training and professional development for teachers in technical institutions to improve pedagogy, ethics, research orientation, and institutional quality.",
-    "benefits": "Inductee technical teachers receive structured training and certification after successful completion of the prescribed phases.",
-    "eligibility": "Teachers working in AICTE-recognized technical institutions or universities imparting technical education are eligible as per AICTE guidelines.",
-    "application": "Participation is arranged through AICTE-approved institutions, universities, and designated training portals or coordinating institutes.",
-    "documents": "Institution approval details, teacher employment proof, nomination or registration details, identity proof, course completion records.",
-    "level": "Central",
-    "schemeCategory": "Technical Teacher Training",
-    "tags": "aicte, technical teachers, induction training, faculty development",
-    "applicationLink": "https://portal.aicte-india.org/partnerportal_enu/start.swe"
-  },
-  {
-    "scheme_name": "AICTE-ISTE Induction/Refresher Programme Scheme",
-    "slug": "aicte-iste-refresher-programme",
-    "details": "The AICTE-ISTE scheme supports induction and refresher training programmes for faculty in technical education institutions.",
-    "benefits": "Approved institutions receive financial support to conduct training programmes that improve teaching quality, research culture, and professional competence.",
-    "eligibility": "AICTE-approved institutions or university departments imparting technical education can apply. Coordinators are generally required to be full-time regular faculty.",
-    "application": "Institutions apply through the AICTE portal during the scheme window with proposal, coordinator details, and programme plan.",
-    "documents": "Institution details, AICTE approval proof, coordinator profile, proposal, budget estimate, bank mandate, undertaking and reports after completion.",
-    "level": "Central",
-    "schemeCategory": "Faculty Development",
-    "tags": "aicte, iste, teachers, refresher programme, technical education",
-    "applicationLink": "https://portal.aicte-india.org/partnerportal_enu/start.swe"
-  },
-  {
-    "scheme_name": "AICTE Technical University Joint Training Programs for Teachers",
-    "slug": "aicte-technical-university-joint-training",
-    "details": "This AICTE scheme supports joint teacher training programmes conducted with technical universities for faculty of affiliated technical institutions.",
-    "benefits": "Financial assistance is provided for conducting training programmes, including resource person support, training material, and related programme expenses.",
-    "eligibility": "AICTE-approved institutions affiliated with participating technical universities are eligible to participate as per AICTE and university guidelines.",
-    "application": "Technical universities coordinate with AICTE and affiliated institutions to propose and conduct training programmes.",
-    "documents": "University proposal, institute details, participant list, programme schedule, budget, utilization certificate, completion report.",
-    "level": "Central",
-    "schemeCategory": "Technical Teacher Training",
-    "tags": "aicte, technical university, teacher training, faculty development",
-    "applicationLink": "https://portal.aicte-india.org/partnerportal_enu/start.swe"
-  },
-  {
-    "scheme_name": "AICTE Short Term Training Programme - SFURTI Scheme",
-    "slug": "aicte-sttp-sfurti",
-    "details": "The AICTE STTP-SFURTI programme supports short-term training for faculty and students to understand rural enterprise clusters, project preparation, innovation, and traditional industry development.",
-    "benefits": "Financial assistance is provided to eligible institutions for conducting approved short-term training programmes.",
-    "eligibility": "AICTE-approved institutions are eligible to apply as per programme guidelines.",
-    "application": "Institutions apply through the AICTE portal with programme details, coordinator information, justification, budget, and required attachments.",
-    "documents": "AICTE approval details, institute registration, programme proposal, coordinator credentials, budget estimate, mandate form, completion report after programme.",
-    "level": "Central",
-    "schemeCategory": "Education & Skill Training",
-    "tags": "aicte, sfurti, short term training, teachers, students",
-    "applicationLink": "https://portal.aicte-india.org/partnerportal_enu/start.swe"
-  },
-  {
-    "scheme_name": "AICTE Distinguished Chair Professor Fellowship",
-    "slug": "aicte-distinguished-chair-professor-fellowship",
-    "details": "This AICTE fellowship enables eminent retired professionals and experts to interact with faculty and students of technical institutions and mentor academic communities.",
-    "benefits": "Selected chair professors may receive honorarium and travel support for approved academic interactions, lectures, mentoring, and knowledge-sharing activities.",
-    "eligibility": "Highly qualified superannuated professionals with acknowledged expertise, leadership, and contributions in their field may be considered.",
-    "application": "Eligible institutions or experts apply through AICTE as per scheme guidelines and approval process.",
-    "documents": "Expert profile, qualifications, experience, achievements, institutional proposal, programme plan, identity and bank details where required.",
-    "level": "Central",
-    "schemeCategory": "Higher Education & Faculty Excellence",
-    "tags": "aicte, fellowship, professor, faculty, technical education",
-    "applicationLink": "https://portal.aicte-india.org/partnerportal_enu/start.swe"
-  },
-  {
-    "scheme_name": "Post Matric Scholarship Scheme",
-    "slug": "post-matric-scholarship",
-    "details": "Post Matric Scholarship schemes provide financial support to eligible students from disadvantaged communities for studies after Class 10.",
-    "benefits": "Assistance may cover tuition fees, maintenance allowance, compulsory non-refundable fees, and other education-related support depending on category and state rules.",
-    "eligibility": "Students belonging to eligible SC, ST, OBC, EBC, minority, or other notified categories and studying in recognized post-matric courses may apply subject to income limits and academic conditions.",
-    "application": "Applications are usually submitted through the National Scholarship Portal or the relevant state scholarship portal within the notified deadline.",
-    "documents": "Aadhaar Card, caste/category certificate, income certificate, previous marksheet, admission proof, fee receipt, bank account details, domicile certificate.",
-    "level": "Central/State",
-    "schemeCategory": "Education & Scholarships",
-    "tags": "students, scholarship, post matric, sc, st, obc, minority",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "PM YASASVI - Young Achievers Scholarship Award Scheme for Vibrant India",
-    "slug": "pm-yasasvi",
-    "details": "PM YASASVI supports eligible students from OBC, EBC, and DNT communities through scholarships for quality school education and related academic expenses.",
-    "benefits": "Scholarship assistance is provided for tuition and educational expenses as per the applicable component and class level.",
-    "eligibility": "Students from OBC, EBC, and DNT categories studying in eligible classes or schools and meeting income and academic criteria can apply.",
-    "application": "Applications are generally submitted through the National Scholarship Portal or the notified scheme portal during the application window.",
-    "documents": "Aadhaar Card, caste/category certificate, income certificate, school certificate, previous marksheet, bank account details, domicile certificate.",
-    "level": "Central",
-    "schemeCategory": "Education & Scholarships",
-    "tags": "students, pm yasasvi, obc, ebc, dnt, scholarship",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "Central Sector Scheme of Scholarship for College and University Students (CSSS)",
-    "slug": "csss",
-    "details": "CSSS provides financial assistance to meritorious students from low-income families pursuing higher education in colleges and universities.",
-    "benefits": "Selected students receive annual scholarship support for undergraduate and postgraduate studies as per scheme norms.",
-    "eligibility": "Students who are above the specified percentile in Class 12 board results, are pursuing regular courses, and meet income criteria can apply.",
-    "application": "Applications and renewals are submitted through the National Scholarship Portal within the notified timeline.",
-    "documents": "Aadhaar Card, Class 12 marksheet, admission proof, income certificate, bank account details, institution verification, caste/category certificate if applicable.",
-    "level": "Central",
-    "schemeCategory": "Higher Education Scholarship",
-    "tags": "students, csss, college scholarship, university scholarship, merit",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "National Means-cum-Merit Scholarship Scheme (NMMSS)",
-    "slug": "nmmss",
-    "details": "NMMSS provides scholarships to meritorious students from economically weaker sections to reduce dropout after Class 8 and encourage continuation of secondary education.",
-    "benefits": "Selected students receive annual scholarship support from Class 9 to Class 12 subject to renewal and academic conditions.",
-    "eligibility": "Students studying in Class 8 in eligible government, government-aided, or local body schools and meeting income and examination criteria can apply.",
-    "application": "Students apply through the National Scholarship Portal or state process after qualifying the state-level NMMSS examination.",
-    "documents": "Aadhaar Card, income certificate, school certificate, Class 7/Class 8 marksheet, bank account details, caste certificate if applicable.",
-    "level": "Central",
-    "schemeCategory": "School Education Scholarship",
-    "tags": "students, nmmss, merit scholarship, class 8, secondary education",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "Pragati Scholarship Scheme for Girl Students - Technical Degree",
-    "slug": "pragati-scholarship-degree",
-    "details": "AICTE Pragati Scholarship supports girl students pursuing technical degree courses in AICTE-approved institutions.",
-    "benefits": "Eligible students receive scholarship assistance up to Rs 50,000 per year for college fees, books, equipment, software, and other education-related expenses.",
-    "eligibility": "Girl students admitted to the first year of a technical degree course or second year through lateral entry in an AICTE-approved institution, subject to family income limits and scheme conditions.",
-    "application": "Applications are submitted through the National Scholarship Portal and verified by the institution.",
-    "documents": "Aadhaar Card, admission letter, previous marksheet, income certificate, bank account details, tuition fee receipt, caste certificate if applicable.",
-    "level": "Central",
-    "schemeCategory": "Technical Education Scholarship",
-    "tags": "girls, students, pragati, aicte, degree scholarship",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "Pragati Scholarship Scheme for Girl Students - Technical Diploma",
-    "slug": "pragati-scholarship-diploma",
-    "details": "AICTE Pragati Scholarship supports girl students pursuing technical diploma courses in AICTE-approved institutions.",
-    "benefits": "Eligible students receive scholarship assistance up to Rs 50,000 per year for fees, books, equipment, software, and education-related expenses.",
-    "eligibility": "Girl students admitted to the first year of a technical diploma course or second year through lateral entry in an AICTE-approved institution, subject to income and other scheme conditions.",
-    "application": "Applications are submitted online through the National Scholarship Portal and verified by the institution.",
-    "documents": "Aadhaar Card, admission proof, previous marksheet, income certificate, bank details, fee receipt, caste certificate if applicable.",
-    "level": "Central",
-    "schemeCategory": "Technical Education Scholarship",
-    "tags": "girls, students, pragati, aicte, diploma scholarship",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "AICTE Saksham Scholarship for Specially-Abled Students - Degree",
-    "slug": "saksham-scholarship-degree",
-    "details": "AICTE Saksham Scholarship supports specially-abled students pursuing technical degree courses in AICTE-approved institutions.",
-    "benefits": "Eligible students receive scholarship assistance up to Rs 50,000 per year for fees, books, equipment, assistive devices, software, and academic needs.",
-    "eligibility": "Specially-abled students with benchmark disability admitted to a technical degree course in an AICTE-approved institution, subject to income and course conditions.",
-    "application": "Applications are submitted through the National Scholarship Portal and verified by the institution.",
-    "documents": "Aadhaar Card, disability certificate, admission proof, previous marksheet, income certificate, bank details, fee receipt.",
-    "level": "Central",
-    "schemeCategory": "Technical Education Scholarship",
-    "tags": "specially abled, students, saksham, aicte, degree",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "AICTE Saksham Scholarship for Specially-Abled Students - Diploma",
-    "slug": "saksham-scholarship-diploma",
-    "details": "AICTE Saksham Scholarship supports specially-abled students pursuing technical diploma courses in AICTE-approved institutions.",
-    "benefits": "Eligible students receive scholarship assistance up to Rs 50,000 per year for fees, books, equipment, assistive devices, software, and academic expenses.",
-    "eligibility": "Specially-abled students with benchmark disability admitted to a technical diploma course in an AICTE-approved institution, subject to income and course conditions.",
-    "application": "Applications are submitted through the National Scholarship Portal and verified by the institution.",
-    "documents": "Aadhaar Card, disability certificate, admission proof, previous marksheet, income certificate, bank details, fee receipt.",
-    "level": "Central",
-    "schemeCategory": "Technical Education Scholarship",
-    "tags": "specially abled, students, saksham, aicte, diploma",
-    "applicationLink": "https://scholarships.gov.in/"
-  },
-  {
-    "scheme_name": "INSPIRE Awards - MANAK",
-    "slug": "inspire-awards-manak",
-    "details": "INSPIRE Awards MANAK encourages school students to develop original ideas and innovations rooted in science and societal needs.",
-    "benefits": "Selected students receive financial support for developing prototypes and may receive mentoring and opportunities to participate in district, state, and national-level exhibitions.",
-    "eligibility": "Students generally in Classes 6 to 10 and within the notified age group from recognized schools can be nominated by their schools.",
-    "application": "Schools nominate student ideas through the INSPIRE Awards MANAK online portal during the nomination window.",
-    "documents": "Student details, school details, idea write-up, bank account details, Aadhaar where required, school nomination.",
-    "level": "Central",
-    "schemeCategory": "Science & Innovation",
-    "tags": "students, inspire, manak, innovation, science",
-    "applicationLink": "https://www.inspireawards-dst.gov.in/"
-  },
-  {
-    "scheme_name": "PM POSHAN - Prime Minister's Overarching Scheme for Holistic Nourishment",
-    "slug": "pm-poshan",
-    "details": "PM POSHAN provides nutritious cooked meals to children in eligible government and government-aided schools to improve nutrition, attendance, and learning readiness.",
-    "benefits": "Children receive meals with prescribed nutrition norms for primary and upper primary classes. The scheme supports food grains, cooking cost, and related meal delivery.",
-    "eligibility": "Students studying in eligible classes in government, government-aided, and local body schools are covered as per scheme norms.",
-    "application": "No individual application is generally required. Benefits are delivered through enrolled eligible schools.",
-    "documents": "School enrollment records. Additional individual documents are generally not required from students for daily meal benefits.",
-    "level": "Central",
-    "schemeCategory": "School Nutrition & Education",
-    "tags": "students, nutrition, school meals, pm poshan, education",
-    "applicationLink": "https://pmposhan.education.gov.in/"
-  },
-  {
-    "scheme_name": "Assam Abhinandan Education Loan Subsidy Scheme",
-    "slug": "assam-abhinandan-education-loan-subsidy",
-    "details": "The Assam Abhinandan scheme provides subsidy support to eligible students who have taken education loans for higher studies.",
-    "benefits": "Eligible borrowers may receive education loan subsidy up to the notified amount, generally credited against qualifying education loan accounts.",
-    "eligibility": "Permanent residents of Assam with eligible education loans from recognized banks and meeting minimum loan and repayment conditions can apply.",
-    "application": "Students apply through the Assam government scheme portal during the application window and submit loan and identity details for verification.",
-    "documents": "Aadhaar Card, PAN Card, address proof, education loan sanction letter, loan account statement/passbook, bank details, student identity proof.",
-    "level": "State",
-    "schemeCategory": "Education Loan Subsidy",
-    "tags": "assam, students, education loan, subsidy, higher education",
-    "applicationLink": "https://www.myscheme.gov.in/schemes/aaelss"
-  },
-  {
-    "scheme_name": "e-Shram Scheme",
-    "slug": "e-shram",
-    "details": "e-Shram is a national database and registration platform for unorganised workers, including gig workers, platform workers, migrant workers, domestic workers, and self-employed workers.",
-    "benefits": "Registered workers receive a Universal Account Number and may be linked to social security, welfare, insurance, and emergency assistance benefits as notified by the government.",
-    "eligibility": "Unorganised workers generally aged 16 to 59 who are not members of EPFO/ESIC/NPS government-funded schemes can register, subject to current guidelines.",
-    "application": "Workers can register through the e-Shram portal, Common Service Centres, or assisted registration using Aadhaar-linked mobile OTP or biometric authentication.",
-    "documents": "Aadhaar Card, Aadhaar-linked mobile number, bank account details, occupation details, nominee details.",
-    "level": "Central",
-    "schemeCategory": "Social Security & Labour Welfare",
-    "tags": "gig workers, unorganised workers, e-shram, platform workers, social security",
-    "applicationLink": "https://eshram.gov.in/"
-  },
-  {
-    "scheme_name": "Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)",
-    "slug": "pm-sym",
-    "details": "PM-SYM is a voluntary contributory pension scheme for eligible unorganised workers to provide old-age income security.",
-    "benefits": "Subscribers receive an assured monthly pension of Rs 3,000 after attaining 60 years of age, subject to contribution and scheme rules.",
-    "eligibility": "Unorganised workers within the notified age range, generally earning up to the income ceiling and not covered by EPFO/ESIC/NPS or income tax, can enroll.",
-    "application": "Enrollment is done through Common Service Centres or the official portal using Aadhaar and bank account details. Monthly contributions are auto-debited.",
-    "documents": "Aadhaar Card, savings bank account or Jan Dhan account, mobile number, occupation and income declaration.",
-    "level": "Central",
-    "schemeCategory": "Pension & Social Security",
-    "tags": "unorganised workers, gig workers, pension, pm sym, old age security",
-    "applicationLink": "https://maandhan.in/"
-  },
-  {
-    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
-    "slug": "pm-svanidhi",
-    "details": "PM SVANidhi provides affordable working capital loans to street vendors and supports their transition into formal credit and digital payments.",
-    "benefits": "Street vendors can receive collateral-free working capital loans in progressive cycles, interest subsidy for timely repayment, and cashback incentives for digital transactions.",
-    "eligibility": "Street vendors vending in urban areas and holding a Certificate of Vending, identity card, survey recognition, or Letter of Recommendation from the urban local body can apply.",
-    "application": "Applications can be submitted through the PM SVANidhi portal, mobile app, Urban Local Bodies, Common Service Centres, or lending institutions.",
-    "documents": "Aadhaar Card, mobile number, bank account details, Certificate of Vending or Letter of Recommendation, identity proof.",
-    "level": "Central",
-    "schemeCategory": "Urban Livelihood & Micro Credit",
-    "tags": "street vendors, informal workers, micro credit, pm svanidhi, self employed",
-    "applicationLink": "https://pmsvanidhi.mohua.gov.in/"
-  },
-  {
-    "scheme_name": "Atal Pension Yojana",
-    "slug": "atal-pension-yojana",
-    "details": "Atal Pension Yojana is a contributory pension scheme focused on workers in the unorganised sector and individuals seeking old-age income security.",
-    "benefits": "Subscribers receive a guaranteed monthly pension option after 60 years of age based on contribution amount and entry age.",
-    "eligibility": "Indian citizens within the eligible joining age range with a savings bank account can subscribe, subject to current restrictions and scheme rules.",
-    "application": "Enrollment is done through banks, post offices, or digital banking channels. Contributions are auto-debited from the subscriber's account.",
-    "documents": "Aadhaar Card, savings bank account details, mobile number, nominee details.",
-    "level": "Central",
-    "schemeCategory": "Pension & Financial Inclusion",
-    "tags": "pension, informal workers, unorganised sector, atal pension, social security",
-    "applicationLink": "https://www.npscra.nsdl.co.in/atal-pension-yojana.php"
-  },
-  {
-    "scheme_name": "Aam Aadmi Bima Yojana",
-    "slug": "aam-aadmi-bima-yojana",
-    "details": "Aam Aadmi Bima Yojana provides social security insurance support to low-income households and workers in specified occupational groups.",
-    "benefits": "The scheme provides insurance support for natural death, accidental death, and disability. Scholarship support may be available for eligible children of beneficiaries.",
-    "eligibility": "Applicants from eligible low-income households or notified occupational groups, generally within the specified age range, can be covered through nodal agencies.",
-    "application": "Enrollment is usually facilitated through state nodal agencies, local bodies, or implementing institutions rather than individual direct online application.",
-    "documents": "Identity proof, age proof, income or BPL proof, occupation proof, bank details, nominee details.",
-    "level": "Central",
-    "schemeCategory": "Insurance & Social Security",
-    "tags": "insurance, informal workers, low income, social security, aam aadmi bima",
-    "applicationLink": "https://www.myscheme.gov.in/schemes/aaby"
-  },
-  {
-    "scheme_name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana",
-    "slug": "ab-pmjay",
-    "details": "Ayushman Bharat PM-JAY provides health protection to eligible vulnerable families for secondary and tertiary hospitalization care.",
-    "benefits": "Eligible families receive cashless health coverage up to Rs 5,00,000 per family per year for listed treatments at empanelled hospitals.",
-    "eligibility": "Eligibility is based on deprivation and occupational criteria from approved beneficiary databases for rural and urban households. Families listed in the eligible database can receive benefits.",
-    "application": "Eligible beneficiaries can verify status and generate Ayushman cards through Common Service Centres, empanelled hospitals, official portals, or state health agencies.",
-    "documents": "Aadhaar Card or other identity proof, ration card/family ID where applicable, mobile number, eligibility verification details.",
-    "level": "Central",
-    "schemeCategory": "Health Insurance",
-    "tags": "health cover, ayushman bharat, pmjay, informal workers, low income families",
-    "applicationLink": "https://beneficiary.nha.gov.in/"
-  },
-  {
-    "scheme_name": "PM Vishwakarma",
-    "slug": "pm-vishwakarma",
-    "details": "PM Vishwakarma supports traditional artisans and craftspeople working with hands and tools through recognition, skilling, toolkit support, and credit linkage.",
-    "benefits": "Beneficiaries can receive Vishwakarma ID and certificate, basic and advanced training, training stipend, toolkit incentive, collateral-free credit support, and digital transaction incentives.",
-    "eligibility": "Artisans and craftspeople engaged in notified traditional trades on a self-employment basis in the unorganised sector can apply, subject to age, family, and trade criteria.",
-    "application": "Registration is done through Common Service Centres and the PM Vishwakarma portal, followed by verification at local and district levels.",
-    "documents": "Aadhaar Card, mobile number, bank account details, ration card or family details, occupation/trade details.",
-    "level": "Central",
-    "schemeCategory": "Skills & Entrepreneurship",
-    "tags": "artisans, informal workers, self employed, skills, pm vishwakarma",
-    "applicationLink": "https://pmvishwakarma.gov.in/"
+    "schemeCategory": "Agriculture & Credit",
+    "tags": "farmers, credit card, crop loan, agriculture loan, kisan",
+    "applicationLink": "https://www.myscheme.gov.in/schemes/kcc",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=zlk81zzrCiE",
+      "https://www.youtube.com/watch?v=jHggWQ2tH0Y",
+      "https://www.youtube.com/watch?v=p3eAjEXgBeA"
+    ]
   },
   {
     "scheme_name": "Employees' Provident Fund (EPF)",
@@ -439,20 +64,12 @@
     "level": "Central",
     "schemeCategory": "Salaried Employee Social Security",
     "tags": "private employee, government employee, salaried, employee, epf, provident fund, retirement, social security",
-    "applicationLink": "https://www.epfindia.gov.in/"
-  },
-  {
-    "scheme_name": "Employees' State Insurance Scheme (ESIC)",
-    "slug": "esic",
-    "details": "ESIC provides social security and medical care to eligible employees and their dependents in covered establishments.",
-    "benefits": "Medical care, sickness benefit, maternity benefit, disablement benefit, dependants' benefit, and other support as per ESIC rules.",
-    "eligibility": "Employees in covered factories or establishments earning within the notified wage ceiling may be covered through employer registration and contribution.",
-    "application": "The employer registers eligible employees on the ESIC portal and provides insurance number/card details for accessing ESIC services.",
-    "documents": "Aadhaar, bank details, family details, employment details, photograph, mobile number, employer registration details.",
-    "level": "Central",
-    "schemeCategory": "Employee Health & Social Security",
-    "tags": "private employee, salaried, employee, worker, healthcare, medical, insurance, esic, factory, establishment",
-    "applicationLink": "https://www.esic.gov.in/"
+    "applicationLink": "https://www.epfindia.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=YFSMD0M_ok0",
+      "https://www.youtube.com/watch?v=c0iowSTUkzc",
+      "https://www.youtube.com/watch?v=1ErvZJ6HFKE"
+    ]
   },
   {
     "scheme_name": "National Pension System (NPS)",
@@ -465,7 +82,12 @@
     "level": "Central",
     "schemeCategory": "Pension & Retirement",
     "tags": "government employee, private employee, freelancer, self employed, other, pension, retirement, nps, salaried",
-    "applicationLink": "https://enps.nsdl.com/"
+    "applicationLink": "https://enps.nsdl.com/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=uiTIaDWTS9I",
+      "https://www.youtube.com/watch?v=9v1-rFw9IkY",
+      "https://www.youtube.com/watch?v=NO-O8-xUcQ8"
+    ]
   },
   {
     "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
@@ -478,98 +100,79 @@
     "level": "Central",
     "schemeCategory": "Insurance & Financial Inclusion",
     "tags": "all occupations, government employee, private employee, teacher, healthcare worker, farmer, gig worker, daily wage, freelancer, homemaker, student, life insurance, social security",
-    "applicationLink": "https://www.jansuraksha.gov.in/"
+    "applicationLink": "https://www.jansuraksha.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=t3rQVzuY89s",
+      "https://www.youtube.com/watch?v=axRthFkBxWc",
+      "https://www.youtube.com/watch?v=r9BoJ-Drv2s"
+    ]
   },
   {
-    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
-    "slug": "pmsby",
-    "details": "PMSBY is a low-cost accidental insurance scheme linked to a bank or post office account.",
-    "benefits": "Eligible enrolled subscribers receive accident insurance cover for death or disability as per scheme rules.",
-    "eligibility": "Individuals in the eligible age group with a savings bank or post office account and auto-debit consent can enroll, subject to scheme conditions.",
-    "application": "Enrollment can be done through participating banks, post offices, mobile banking, internet banking, or branch forms.",
-    "documents": "Savings bank/post office account, Aadhaar/KYC, mobile number, nominee details, consent for auto-debit.",
+    "scheme_name": "Employees' State Insurance Scheme (ESIC)",
+    "slug": "esic",
+    "details": "ESIC provides social security and medical care to eligible employees and their dependents in covered establishments.",
+    "benefits": "Medical care, sickness benefit, maternity benefit, disablement benefit, dependants' benefit, and other support as per ESIC rules.",
+    "eligibility": "Employees in covered factories or establishments earning within the notified wage ceiling may be covered through employer registration and contribution.",
+    "application": "The employer registers eligible employees on the ESIC portal and provides insurance number/card details for accessing ESIC services.",
+    "documents": "Aadhaar, bank details, family details, employment details, photograph, mobile number, employer registration details.",
     "level": "Central",
-    "schemeCategory": "Accident Insurance & Financial Inclusion",
-    "tags": "all occupations, worker, private employee, government employee, farmer, gig worker, daily wage, freelancer, shop owner, homemaker, student, accident insurance, social security",
-    "applicationLink": "https://www.jansuraksha.gov.in/"
+    "schemeCategory": "Employee Health & Social Security",
+    "tags": "private employee, salaried, employee, worker, healthcare, medical, insurance, esic, factory, establishment",
+    "applicationLink": "https://www.esic.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=FimxGDAtzko",
+      "https://www.youtube.com/watch?v=QtA_Ka1KwQI",
+      "https://www.youtube.com/watch?v=H5DqO_Hl2_U"
+    ]
   },
   {
-    "scheme_name": "Pradhan Mantri Mudra Yojana (PMMY)",
-    "slug": "pmmy-mudra",
-    "details": "PMMY provides collateral-free loans through banks and financial institutions for non-corporate, non-farm micro and small enterprises.",
-    "benefits": "Loans under Shishu, Kishor, and Tarun categories can support business setup, working capital, equipment purchase, and expansion.",
-    "eligibility": "Small business owners, shopkeepers, traders, artisans, service providers, freelancers, women entrepreneurs, and other non-farm micro enterprises may apply subject to lender assessment.",
-    "application": "Applications can be submitted through banks, NBFCs, MFIs, or online portals with business and repayment details.",
-    "documents": "Identity proof, address proof, business proof, bank statements, quotation/project details, caste/category certificate if applicable, photographs.",
+    "scheme_name": "DIKSHA - Digital Infrastructure for Knowledge Sharing",
+    "slug": "diksha",
+    "details": "DIKSHA is a national digital platform for school education that provides e-content, teacher training modules, textbooks with QR-linked resources, and learning material.",
+    "benefits": "Teachers and students can access digital courses, teaching-learning material, assessments, and certificates for completed training modules.",
+    "eligibility": "Teachers, students, school leaders, teacher educators, and education officials can use DIKSHA. Specific courses may be limited to assigned cohorts.",
+    "application": "Users can access DIKSHA through the website or mobile app, sign in with mobile/email or state credentials, and enroll in available courses.",
+    "documents": "Mobile number or email, teacher/school details where required, state credentials for assigned training.",
     "level": "Central",
-    "schemeCategory": "Micro Enterprise Credit",
-    "tags": "shop owner, freelancer, gig worker, homemaker, entrepreneur, small business, self employed, mudra, loan, working capital, business",
-    "applicationLink": "https://www.mudra.org.in/"
+    "schemeCategory": "Digital Education",
+    "tags": "teachers, students, digital learning, diksha, e-content",
+    "applicationLink": "https://diksha.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=Dc7LxiXGBoo",
+      "https://www.youtube.com/watch?v=jCA7_vu_DxY",
+      "https://www.youtube.com/watch?v=h88-pS2L5l8"
+    ]
   },
   {
-    "scheme_name": "Prime Minister's Employment Generation Programme (PMEGP)",
-    "slug": "pmegp",
-    "details": "PMEGP supports setting up new micro-enterprises in manufacturing, service, and business sectors through credit-linked subsidy.",
-    "benefits": "Eligible applicants can receive bank credit with margin money subsidy for approved new micro-enterprise projects.",
-    "eligibility": "Individuals and eligible institutions meeting age, education, project cost, and new-enterprise conditions can apply. Existing units are generally not eligible for the same support.",
-    "application": "Applications are submitted on the PMEGP e-portal with project details and routed to implementing agencies and banks.",
-    "documents": "Aadhaar, PAN, project report, education/skill certificate where required, caste/special category certificate if applicable, bank details, photograph.",
+    "scheme_name": "NISHTHA - National Initiative for School Heads' and Teachers' Holistic Advancement",
+    "slug": "nishtha",
+    "details": "NISHTHA is a capacity-building programme for school teachers and heads to improve classroom practices, learning outcomes, inclusive education, and school leadership.",
+    "benefits": "Teachers receive structured training modules, professional development resources, and certification support through online and blended modes.",
+    "eligibility": "School teachers, school heads, principals, and education functionaries covered by the relevant school education department or training cohort are eligible.",
+    "application": "Training is generally accessed through DIKSHA or through nominations and rollout by state/UT education departments, SCERTs, DIETs, and school authorities.",
+    "documents": "Teacher ID or employee details, school details, mobile number, DIKSHA login credentials, department nomination where applicable.",
     "level": "Central",
-    "schemeCategory": "Self Employment & Entrepreneurship",
-    "tags": "shop owner, freelancer, homemaker, unemployed, entrepreneur, small business, self employment, pmegp, manufacturing, service, business loan",
-    "applicationLink": "https://www.kviconline.gov.in/pmegpeportal/"
+    "schemeCategory": "Teacher Training & Education Quality",
+    "tags": "teachers, school heads, training, nishtha, professional development",
+    "applicationLink": "https://diksha.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=h88-pS2L5l8",
+      "https://www.youtube.com/watch?v=jCA7_vu_DxY"
+    ]
   },
   {
-    "scheme_name": "Stand-Up India Scheme",
-    "slug": "stand-up-india",
-    "details": "Stand-Up India facilitates bank loans for greenfield enterprises promoted by women and SC/ST entrepreneurs.",
-    "benefits": "Eligible entrepreneurs can get bank loans for setting up greenfield manufacturing, services, trading, or allied agriculture activities.",
-    "eligibility": "SC/ST and/or women entrepreneurs above the eligible age, setting up a first-time greenfield enterprise, may apply subject to bank appraisal and scheme conditions.",
-    "application": "Applicants can apply through the Stand-Up India portal, bank branches, or linked handholding agencies.",
-    "documents": "Identity proof, address proof, caste certificate if applicable, business plan, project report, bank details, KYC documents, enterprise details.",
+    "scheme_name": "National Awards to Teachers (NAT)",
+    "slug": "national-awards-to-teachers",
+    "details": "National Awards to Teachers recognize outstanding teachers who have made significant contributions to improving school education and student learning.",
+    "benefits": "Selected teachers receive national recognition, award certificate, medal, and award benefits as notified by the government.",
+    "eligibility": "Regular teachers and heads of schools from eligible schools can apply or be nominated, subject to service, performance, and contribution criteria specified in annual guidelines.",
+    "application": "Applications are submitted through the official national awards portal during the notified application window, followed by district, state, and national-level evaluation.",
+    "documents": "Teacher profile, service details, school details, achievements, supporting evidence, photographs or videos where requested, identity documents.",
     "level": "Central",
-    "schemeCategory": "Entrepreneurship & Business Credit",
-    "tags": "woman, women, homemaker, shop owner, freelancer, entrepreneur, sc, st, business, loan, startup, trading, service",
-    "applicationLink": "https://www.standupmitra.in/"
-  },
-  {
-    "scheme_name": "Deendayal Antyodaya Yojana - National Urban Livelihoods Mission (DAY-NULM)",
-    "slug": "day-nulm",
-    "details": "DAY-NULM supports urban poor households through self-employment, skill training, SHGs, livelihood promotion, and shelter support.",
-    "benefits": "Support may include skill training, self-employment assistance, SHG support, vendor support, and access to credit or livelihood services through urban local bodies.",
-    "eligibility": "Urban poor individuals, SHGs, street vendors, and eligible livelihood groups can access components as per city/state implementation rules.",
-    "application": "Applicants can contact urban local bodies, city mission management units, community organizers, or designated state/city portals.",
-    "documents": "Identity proof, address proof, income/BPL or vulnerability proof where required, bank details, SHG/vendor details if applicable.",
-    "level": "Central/State Implemented",
-    "schemeCategory": "Urban Livelihood & Skill Development",
-    "tags": "daily wage, gig worker, street vendor, shop owner, homemaker, urban poor, skill training, self employment, shg, livelihood",
-    "applicationLink": "https://nulm.gov.in/"
-  },
-  {
-    "scheme_name": "Deendayal Antyodaya Yojana - National Rural Livelihoods Mission (DAY-NRLM)",
-    "slug": "day-nrlm",
-    "details": "DAY-NRLM supports rural poor households, especially women, through Self Help Groups, financial inclusion, livelihoods, and enterprise promotion.",
-    "benefits": "Eligible SHGs and members may receive capacity building, revolving funds, community investment support, bank linkage, and livelihood assistance.",
-    "eligibility": "Rural poor households and women organized into SHGs can participate as per state rural livelihood mission processes.",
-    "application": "Applicants can contact Gram Panchayat, block mission office, village organization, or State Rural Livelihood Mission functionaries.",
-    "documents": "Identity proof, address proof, bank account, SHG membership details, income/vulnerability details where required.",
-    "level": "Central/State Implemented",
-    "schemeCategory": "Rural Livelihood & SHG Support",
-    "tags": "homemaker, women, rural, shg, self help group, livelihood, daily wage, freelancer, small business, self employment",
-    "applicationLink": "https://aajeevika.gov.in/"
-  },
-  {
-    "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)",
-    "slug": "pmkvy",
-    "details": "PMKVY supports skill training and certification for youth and workers in industry-relevant job roles.",
-    "benefits": "Eligible candidates can receive short-term training, recognition of prior learning, assessment, certification, and placement/livelihood support depending on the component.",
-    "eligibility": "Youth, unemployed persons, school/college dropouts, workers, gig workers, homemakers, healthcare support aspirants, and others can join eligible training programs subject to course criteria.",
-    "application": "Candidates can find training centres and enroll through Skill India Digital or authorized training partners.",
-    "documents": "Aadhaar/KYC, education details, mobile number, bank account, photographs, category certificate if applicable.",
-    "level": "Central",
-    "schemeCategory": "Skill Development & Employment",
-    "tags": "student, gig worker, daily wage, freelancer, homemaker, healthcare worker, other, skill training, employment, certification, pmkvy",
-    "applicationLink": "https://www.skillindiadigital.gov.in/"
+    "schemeCategory": "Teacher Recognition",
+    "tags": "teachers, national award, school education, recognition, nat",
+    "applicationLink": "https://nationalawardstoteachers.education.gov.in/",
+    "youtube_links": []
   },
   {
     "scheme_name": "Ayushman Bharat Digital Mission (ABDM)",
@@ -582,7 +185,134 @@
     "level": "Central",
     "schemeCategory": "Digital Health",
     "tags": "healthcare worker, health, medical, hospital, clinic, doctor, nurse, citizen, abha, digital health, records",
-    "applicationLink": "https://abdm.gov.in/"
+    "applicationLink": "https://abdm.gov.in/",
+    "youtube_links": []
+  },
+  {
+    "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)",
+    "slug": "pmkvy",
+    "details": "PMKVY supports skill training and certification for youth and workers in industry-relevant job roles.",
+    "benefits": "Eligible candidates can receive short-term training, recognition of prior learning, assessment, certification, and placement/livelihood support depending on the component.",
+    "eligibility": "Youth, unemployed persons, school/college dropouts, workers, gig workers, homemakers, healthcare support aspirants, and others can join eligible training programs subject to course criteria.",
+    "application": "Candidates can find training centres and enroll through Skill India Digital or authorized training partners.",
+    "documents": "Aadhaar/KYC, education details, mobile number, bank account, photographs, category certificate if applicable.",
+    "level": "Central",
+    "schemeCategory": "Skill Development & Employment",
+    "tags": "student, gig worker, daily wage, freelancer, homemaker, healthcare worker, other, skill training, employment, certification, pmkvy",
+    "applicationLink": "https://www.skillindiadigital.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=s96rCnhEo5s",
+      "https://www.youtube.com/watch?v=Ldtc7pH_uVU",
+      "https://www.youtube.com/watch?v=jRrKjOrIzYE"
+    ]
+  },
+  {
+    "scheme_name": "e-Shram Scheme",
+    "slug": "e-shram",
+    "details": "e-Shram is a national database and registration platform for unorganised workers, including gig workers, platform workers, migrant workers, domestic workers, and self-employed workers.",
+    "benefits": "Registered workers receive a Universal Account Number and may be linked to social security, welfare, insurance, and emergency assistance benefits as notified by the government.",
+    "eligibility": "Unorganised workers generally aged 16 to 59 who are not members of EPFO/ESIC/NPS government-funded schemes can register, subject to current guidelines.",
+    "application": "Workers can register through the e-Shram portal, Common Service Centres, or assisted registration using Aadhaar-linked mobile OTP or biometric authentication.",
+    "documents": "Aadhaar Card, Aadhaar-linked mobile number, bank account details, occupation details, nominee details.",
+    "level": "Central",
+    "schemeCategory": "Social Security & Labour Welfare",
+    "tags": "gig workers, unorganised workers, e-shram, platform workers, social security",
+    "applicationLink": "https://eshram.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=mnWbxDTIzXQ",
+      "https://www.youtube.com/watch?v=eNbGPYtwBl4",
+      "https://www.youtube.com/watch?v=YWi-qa7uiGo"
+    ]
+  },
+  {
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)",
+    "slug": "pm-sym",
+    "details": "PM-SYM is a voluntary contributory pension scheme for eligible unorganised workers to provide old-age income security.",
+    "benefits": "Subscribers receive an assured monthly pension of Rs 3,000 after attaining 60 years of age, subject to contribution and scheme rules.",
+    "eligibility": "Unorganised workers within the notified age range, generally earning up to the income ceiling and not covered by EPFO/ESIC/NPS or income tax, can enroll.",
+    "application": "Enrollment is done through Common Service Centres or the official portal using Aadhaar and bank account details. Monthly contributions are auto-debited.",
+    "documents": "Aadhaar Card, savings bank account or Jan Dhan account, mobile number, occupation and income declaration.",
+    "level": "Central",
+    "schemeCategory": "Pension & Social Security",
+    "tags": "unorganised workers, gig workers, pension, pm sym, old age security",
+    "applicationLink": "https://maandhan.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=JZbCd8tzbGU",
+      "https://www.youtube.com/watch?v=xFeoAxsWx7Y",
+      "https://www.youtube.com/watch?v=LydRtJsDt8k"
+    ]
+  },
+  {
+    "scheme_name": "Pradhan Mantri Mudra Yojana (PMMY)",
+    "slug": "pmmy-mudra",
+    "details": "PMMY provides collateral-free loans through banks and financial institutions for non-corporate, non-farm micro and small enterprises.",
+    "benefits": "Loans under Shishu, Kishor, and Tarun categories can support business setup, working capital, equipment purchase, and expansion.",
+    "eligibility": "Small business owners, shopkeepers, traders, artisans, service providers, freelancers, women entrepreneurs, and other non-farm micro enterprises may apply subject to lender assessment.",
+    "application": "Applications can be submitted through banks, NBFCs, MFIs, or online portals with business and repayment details.",
+    "documents": "Identity proof, address proof, business proof, bank statements, quotation/project details, caste/category certificate if applicable, photographs.",
+    "level": "Central",
+    "schemeCategory": "Micro Enterprise Credit",
+    "tags": "shop owner, freelancer, gig worker, homemaker, entrepreneur, small business, self employed, mudra, loan, working capital, business",
+    "applicationLink": "https://www.mudra.org.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=LwMYQI7Rh0Y",
+      "https://www.youtube.com/watch?v=bxHhYET32gY",
+      "https://www.youtube.com/watch?v=tK3QpjScdnc"
+    ]
+  },
+  {
+    "scheme_name": "Prime Minister's Employment Generation Programme (PMEGP)",
+    "slug": "pmegp",
+    "details": "PMEGP supports setting up new micro-enterprises in manufacturing, service, and business sectors through credit-linked subsidy.",
+    "benefits": "Eligible applicants can receive bank credit with margin money subsidy for approved new micro-enterprise projects.",
+    "eligibility": "Individuals and eligible institutions meeting age, education, project cost, and new-enterprise conditions can apply. Existing units are generally not eligible for the same support.",
+    "application": "Applications are submitted on the PMEGP e-portal with project details and routed to implementing agencies and banks.",
+    "documents": "Aadhaar, PAN, project report, education/skill certificate where required, caste/special category certificate if applicable, bank details, photograph.",
+    "level": "Central",
+    "schemeCategory": "Self Employment & Entrepreneurship",
+    "tags": "shop owner, freelancer, homemaker, unemployed, entrepreneur, small business, self employment, pmegp, manufacturing, service, business loan",
+    "applicationLink": "https://www.kviconline.gov.in/pmegpeportal/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=NwYmBsm0_8Y",
+      "https://www.youtube.com/watch?v=8b7VR8Kp17s",
+      "https://www.youtube.com/watch?v=P6BqBQNHnt4"
+    ]
+  },
+  {
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+    "slug": "pm-svanidhi",
+    "details": "PM SVANidhi provides affordable working capital loans to street vendors and supports their transition into formal credit and digital payments.",
+    "benefits": "Street vendors can receive collateral-free working capital loans in progressive cycles, interest subsidy for timely repayment, and cashback incentives for digital transactions.",
+    "eligibility": "Street vendors vending in urban areas and holding a Certificate of Vending, identity card, survey recognition, or Letter of Recommendation from the urban local body can apply.",
+    "application": "Applications can be submitted through the PM SVANidhi portal, mobile app, Urban Local Bodies, Common Service Centres, or lending institutions.",
+    "documents": "Aadhaar Card, mobile number, bank account details, Certificate of Vending or Letter of Recommendation, identity proof.",
+    "level": "Central",
+    "schemeCategory": "Urban Livelihood & Micro Credit",
+    "tags": "street vendors, informal workers, micro credit, pm svanidhi, self employed",
+    "applicationLink": "https://pmsvanidhi.mohua.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=bKgeJeXfhjo",
+      "https://www.youtube.com/watch?v=9Af8SUzpPsg",
+      "https://www.youtube.com/watch?v=4odDYofLZAo"
+    ]
+  },
+  {
+    "scheme_name": "Deendayal Antyodaya Yojana - National Rural Livelihoods Mission (DAY-NRLM)",
+    "slug": "day-nrlm",
+    "details": "DAY-NRLM supports rural poor households, especially women, through Self Help Groups, financial inclusion, livelihoods, and enterprise promotion.",
+    "benefits": "Eligible SHGs and members may receive capacity building, revolving funds, community investment support, bank linkage, and livelihood assistance.",
+    "eligibility": "Rural poor households and women organized into SHGs can participate as per state rural livelihood mission processes.",
+    "application": "Applicants can contact Gram Panchayat, block mission office, village organization, or State Rural Livelihood Mission functionaries.",
+    "documents": "Identity proof, address proof, bank account, SHG membership details, income/vulnerability details where required.",
+    "level": "Central/State Implemented",
+    "schemeCategory": "Rural Livelihood & SHG Support",
+    "tags": "homemaker, women, rural, shg, self help group, livelihood, daily wage, freelancer, small business, self employment",
+    "applicationLink": "https://aajeevika.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=nieAriptp78",
+      "https://www.youtube.com/watch?v=IZKBxhjmhE4",
+      "https://www.youtube.com/watch?v=KkK_2L8RvSM"
+    ]
   },
   {
     "scheme_name": "Sukanya Samriddhi Yojana (SSY)",
@@ -595,6 +325,99 @@
     "level": "Central",
     "schemeCategory": "Small Savings & Girl Child Welfare",
     "tags": "homemaker, parent, family, girl child, student, savings, education, women, small savings",
-    "applicationLink": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx"
+    "applicationLink": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=OOGs3jhi2Ho",
+      "https://www.youtube.com/watch?v=698axqI5-hQ",
+      "https://www.youtube.com/watch?v=SOV-fm2ehnk"
+    ]
+  },
+  {
+    "scheme_name": "Stand-Up India Scheme",
+    "slug": "stand-up-india",
+    "details": "Stand-Up India facilitates bank loans for greenfield enterprises promoted by women and SC/ST entrepreneurs.",
+    "benefits": "Eligible entrepreneurs can get bank loans for setting up greenfield manufacturing, services, trading, or allied agriculture activities.",
+    "eligibility": "SC/ST and/or women entrepreneurs above the eligible age, setting up a first-time greenfield enterprise, may apply subject to bank appraisal and scheme conditions.",
+    "application": "Applicants can apply through the Stand-Up India portal, bank branches, or linked handholding agencies.",
+    "documents": "Identity proof, address proof, caste certificate if applicable, business plan, project report, bank details, KYC documents, enterprise details.",
+    "level": "Central",
+    "schemeCategory": "Entrepreneurship & Business Credit",
+    "tags": "woman, women, homemaker, shop owner, freelancer, entrepreneur, sc, st, business, loan, startup, trading, service",
+    "applicationLink": "https://www.standupmitra.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=00Y3eeJEL3w",
+      "https://www.youtube.com/watch?v=pnkdx3sqO_4",
+      "https://www.youtube.com/watch?v=X4NgvFS9cDE"
+    ]
+  },
+  {
+    "scheme_name": "Central Sector Scheme of Scholarship for College and University Students (CSSS)",
+    "slug": "csss",
+    "details": "CSSS provides financial assistance to meritorious students from low-income families pursuing higher education in colleges and universities.",
+    "benefits": "Selected students receive annual scholarship support for undergraduate and postgraduate studies as per scheme norms.",
+    "eligibility": "Students who are above the specified percentile in Class 12 board results, are pursuing regular courses, and meet income criteria can apply.",
+    "application": "Applications and renewals are submitted through the National Scholarship Portal within the notified timeline.",
+    "documents": "Aadhaar Card, Class 12 marksheet, admission proof, income certificate, bank account details, institution verification, caste/category certificate if applicable.",
+    "level": "Central",
+    "schemeCategory": "Higher Education Scholarship",
+    "tags": "students, csss, college scholarship, university scholarship, merit",
+    "applicationLink": "https://scholarships.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=vWujHX9Zq9A",
+      "https://www.youtube.com/watch?v=xS3PYwklszA"
+    ]
+  },
+  {
+    "scheme_name": "PM YASASVI - Young Achievers Scholarship Award Scheme for Vibrant India",
+    "slug": "pm-yasasvi",
+    "details": "PM YASASVI supports eligible students from OBC, EBC, and DNT communities through scholarships for quality school education and related academic expenses.",
+    "benefits": "Scholarship assistance is provided for tuition and educational expenses as per the applicable component and class level.",
+    "eligibility": "Students from OBC, EBC, and DNT categories studying in eligible classes or schools and meeting income and academic criteria can apply.",
+    "application": "Applications are generally submitted through the National Scholarship Portal or the notified scheme portal during the application window.",
+    "documents": "Aadhaar Card, caste/category certificate, income certificate, school certificate, previous marksheet, bank account details, domicile certificate.",
+    "level": "Central",
+    "schemeCategory": "Education & Scholarships",
+    "tags": "students, pm yasasvi, obc, ebc, dnt, scholarship",
+    "applicationLink": "https://scholarships.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=Ur_tOPmnfdI",
+      "https://www.youtube.com/watch?v=syR3RoOrTvs",
+      "https://www.youtube.com/watch?v=DStBDmFWL_k"
+    ]
+  },
+  {
+    "scheme_name": "National Means-cum-Merit Scholarship Scheme (NMMSS)",
+    "slug": "nmmss",
+    "details": "NMMSS provides scholarships to meritorious students from economically weaker sections to reduce dropout after Class 8 and encourage continuation of secondary education.",
+    "benefits": "Selected students receive annual scholarship support from Class 9 to Class 12 subject to renewal and academic conditions.",
+    "eligibility": "Students studying in Class 8 in eligible government, government-aided, or local body schools and meeting income and examination criteria can apply.",
+    "application": "Students apply through the National Scholarship Portal or state process after qualifying the state-level NMMSS examination.",
+    "documents": "Aadhaar Card, income certificate, school certificate, Class 7/Class 8 marksheet, bank account details, caste certificate if applicable.",
+    "level": "Central",
+    "schemeCategory": "School Education Scholarship",
+    "tags": "students, nmmss, merit scholarship, class 8, secondary education",
+    "applicationLink": "https://scholarships.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=zXUOp0P2W4g",
+      "https://www.youtube.com/watch?v=vWujHX9Zq9A"
+    ]
+  },
+  {
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "slug": "pmsby",
+    "details": "PMSBY is a low-cost accidental insurance scheme linked to a bank or post office account.",
+    "benefits": "Eligible enrolled subscribers receive accident insurance cover for death or disability as per scheme rules.",
+    "eligibility": "Individuals in the eligible age group with a savings bank or post office account and auto-debit consent can enroll, subject to scheme conditions.",
+    "application": "Enrollment can be done through participating banks, post offices, mobile banking, internet banking, or branch forms.",
+    "documents": "Savings bank/post office account, Aadhaar/KYC, mobile number, nominee details, consent for auto-debit.",
+    "level": "Central",
+    "schemeCategory": "Accident Insurance & Financial Inclusion",
+    "tags": "all occupations, worker, private employee, government employee, farmer, gig worker, daily wage, freelancer, shop owner, homemaker, student, accident insurance, social security",
+    "applicationLink": "https://www.jansuraksha.gov.in/",
+    "youtube_links": [
+      "https://www.youtube.com/watch?v=q_fUFVXEFuA",
+      "https://www.youtube.com/watch?v=TGnDZUXT4Uo",
+      "https://www.youtube.com/watch?v=qHM1V_nOFbE"
+    ]
   }
 ]

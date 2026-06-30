@@ -74,7 +74,7 @@ COPY = {
 }
 
 OPTIONS = {
-    "mode": [("voice", "Voice first", "आवाज आधी", "आवाज प्रथम"), ("text", "Visual / text", "दृश्य / मजकूर", "दृश्य / मजकूर")],
+    "mode": [("voice", "Voice first", "आवाज प्रथम ", "आवाज आधी"), ("text", "Visual / text", "दृश्य / मजकूर", "दृश्य / मजकूर")],
     "incomeType": [("fixed", "Fixed income", "निश्चित आय", "निश्चित उत्पन्न"), ("variable", "Variable income", "बदलती आय", "बदलते उत्पन्न")],
     "fixedJobs": [
         ("government_employee", "Government Employee", "सरकारी कर्मचारी", "सरकारी कर्मचारी"),

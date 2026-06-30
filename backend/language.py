@@ -8,15 +8,13 @@ from ai.config.llm import llm
 def to_english(message, language):
     """Translate user input to English for internal LLM processing.
 
-    Machine callback data (e.g. 'choose_goal:emergency_fund') is passed
-    through unchanged.  English input is returned as-is.
+    Machine callback data (e.g. 'scheme:pm-kisan') is passed through unchanged.
+    English input is returned as-is.
     """
     if is_machine_message(message):
         return message
     if not language or language == "en":
-        # Still normalise in case of Hinglish or mixed script typed by an
-        # English-selected user.
-        return _normalise_to_english(message, "auto")
+        return message
     return _normalise_to_english(message, language)
 
 
@@ -86,6 +84,16 @@ def _translate_to_lang(text, target_lang):
     if not text or target_lang == "en":
         return text
 
+    script_rules = {
+        "hi": "Hindi must be written in Devanagari script only.",
+        "mr": "Marathi must be written in Devanagari script only.",
+        "ta": "Tamil must be written in Tamil script only.",
+        "te": "Telugu must be written in Telugu script only.",
+        "kn": "Kannada must be written in Kannada script only.",
+        "bn": "Bengali must be written in Bengali script only.",
+        "gu": "Gujarati must be written in Gujarati script only.",
+    }
+
     try:
         result = llm([
             {
@@ -95,10 +103,10 @@ def _translate_to_lang(text, target_lang):
                     "Translate the given English text to the target language. "
                     "Rules:\n"
                     "1. Return ONLY the translated text. No explanation, no reasoning, no <think> tags, no extra words, no markdown.\n"
-                    f"2. {_script_rule(target_lang)}\n"
+                    f"2. {script_rules.get(target_lang, '')}\n"
                     "3. Keep all numbers, currency amounts (₹), and proper nouns (state/district/month names) as-is or in the local script.\n"
                     "4. Use simple, conversational language appropriate for a rural Indian user.\n"
-                    "5. Do NOT translate button labels or callback codes like 'choose_goal:...', 'confirm_goal:...', or 'edit_goal:...'"
+                    "5. Do NOT translate button labels or callback codes like 'scheme:...'"
                 ),
             },
             {
@@ -120,18 +128,4 @@ def _translate_buttons(buttons, language):
 
 
 def is_machine_message(message):
-    text = str(message or "")
-    return ":" in text and text.split(":", 1)[0] in ["choose_goal", "confirm_goal", "edit_goal", "scheme"]
-
-
-def _script_rule(language):
-    scripts = {
-        "hi": "Hindi must be written in Devanagari script only.",
-        "mr": "Marathi must be written in Devanagari script only.",
-        "ta": "Tamil must be written in Tamil script only.",
-        "te": "Telugu must be written in Telugu script only.",
-        "kn": "Kannada must be written in Kannada script only.",
-        "bn": "Bengali must be written in Bengali script only.",
-        "gu": "Gujarati must be written in Gujarati script only.",
-    }
-    return scripts.get(language, "")
+    return str(message or "").startswith("scheme:")

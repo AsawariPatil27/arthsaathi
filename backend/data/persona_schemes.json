@@ -1,0 +1,15 @@
+{
+  "farmer": ["pm-kisan", "pmfby", "kcc"],
+  "government_employee": ["epf", "nps", "pmjjby"],
+  "private_employee": ["epf", "esic", "pmjjby"],
+  "teacher": ["diksha", "nishtha", "epf"],
+  "professor": ["diksha", "nishtha", "nps"],
+  "healthcare_worker": ["esic", "abdm", "pmjjby"],
+  "gig_worker": ["e-shram", "pm-sym", "pmkvy"],
+  "daily_wage": ["e-shram", "pm-sym", "pmsby"],
+  "shop_owner": ["pmmy-mudra", "pmegp", "pmsby"],
+  "freelancer": ["pmmy-mudra", "pmkvy", "nps"],
+  "homemaker": ["day-nrlm", "sukanya-samriddhi-yojana", "pmjjby"],
+  "student": ["csss", "pm-yasasvi", "nmmss"],
+  "other": ["pmjjby", "pmsby", "pmkvy"]
+}

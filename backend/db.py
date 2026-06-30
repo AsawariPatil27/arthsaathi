@@ -9,21 +9,16 @@ load_dotenv()
 client = MongoClient(os.getenv("MONGODB_URI"), serverSelectionTimeoutMS=2000)
 db = client.get_default_database()
 users = db.users
-goals = db.goals
 transactions = db.transactions
 merchant_categories = db.merchant_categories
-schemes = db.schemes
 conversations = db.conversations
 
 try:
     users.create_index("telegramId", unique=True)
-    goals.create_index([("telegramId", 1), ("type", 1)])
     transactions.create_index("telegramId")
     transactions.create_index([("telegramId", 1), ("refHash", 1)], sparse=True)
     transactions.create_index([("telegramId", 1), ("contentHash", 1)], sparse=True)
     merchant_categories.create_index("merchant", unique=True)
-    schemes.create_index("slug", unique=True)
-    schemes.create_index([("scheme_name", "text"), ("details", "text"), ("eligibility", "text"), ("tags", "text")])
     conversations.create_index("telegramId", unique=True)
 except PyMongoError as error:
     print(f"[MongoDB] Index creation skipped: {error}")

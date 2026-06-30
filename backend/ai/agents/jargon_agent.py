@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 
 from ai.config.llm import llm
-from db import conversations, goals, users
+from db import conversations, users
 
 
 logger = logging.getLogger(__name__)
@@ -95,13 +95,7 @@ def load_user_profile(user, telegram_id):
         profile = users.find_one({"telegramId": telegram_id}) or {}
 
     profile.pop("_id", None)
-    profile["pendingGoals"] = active_goals(telegram_id)
     return profile
-
-
-def active_goals(telegram_id):
-    rows = goals.find({"telegramId": str(telegram_id), "status": "active"}).sort("priority", 1)
-    return [{k: v for k, v in row.items() if k != "_id"} for row in rows]
 
 
 def build_prompt(profile, history, current_question):
@@ -131,11 +125,7 @@ def derive_user_context(profile):
         monthly_expense = money_text(profile.get("monthlyExpense"), "monthly expenses")
         income_pattern = f"{occupation} in {district}, {state}. Earns {monthly_income}/month and has {monthly_expense}/month expenses."
 
-    active = sorted(profile.get("pendingGoals", []), key=lambda goal: goal.get("priority", 99))
-    goal_parts = [f"{goal.get('name', 'Goal')} target {money_text(goal.get('targetAmount'), 'not set')}" for goal in active]
-    goals_text = ", ".join(goal_parts) if goal_parts else "none specified"
-
-    return f"{income_pattern} Active savings goals: {goals_text}."
+    return income_pattern
 
 
 def get_conversation_history(telegram_id, limit_turns=10):

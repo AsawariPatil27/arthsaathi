@@ -78,13 +78,7 @@ def get_menu_response(user):
     }
 
 
-from users import save_user
-
 def handle_menu_callback(user, action):
-    # Clear any pending action since the user is starting a new flow from the menu
-    user["pendingAction"] = ""
-    save_user(user)
-
     user_lang = lang(user)
     copy = MENU_COPY.get(user_lang, MENU_COPY["en"])
 

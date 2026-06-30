@@ -46,9 +46,6 @@ def chat(payload: dict):
     if not user.get("profileCompleted") or message == "/start":
         return handle_onboarding(user, message)
     if message.strip().lower() == "/menu":
-        from users import save_user
-        user["pendingAction"] = ""
-        save_user(user)
         return get_menu_response(user)
     return handle_message(user, message)
 

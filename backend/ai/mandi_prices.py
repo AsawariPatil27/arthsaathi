@@ -6,18 +6,13 @@ import requests
 from requests.exceptions import RequestException
 
 from ai.config.llm import llm
-from users import save_user
 
 
 def mandi_price_reply(user, message):
     commodity = _commodity(message) or _commodity(user.get("originalMessage"))
     if not commodity:
-        user["pendingAction"] = "mandi_price"
-        save_user(user)
         return {"reply": "Which crop or commodity price do you want?", "buttons": []}
 
-    user["pendingAction"] = ""
-    save_user(user)
     try:
         records = _fetch(user, commodity)
     except RequestException as error:

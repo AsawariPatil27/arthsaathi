@@ -19,10 +19,6 @@ def default_user(telegram_id):
         "harvestIncome": 0,
         "leanDurationMonths": 0,
         "leanMonthlyExpense": 0,
-        # Planner state
-        "pendingGoals": [],
-        "pendingGoalContext": {},
-        "pendingAction": "",
     }
 
 
