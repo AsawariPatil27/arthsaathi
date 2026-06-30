@@ -16,8 +16,7 @@ conversations = db.conversations
 try:
     users.create_index("telegramId", unique=True)
     transactions.create_index("telegramId")
-    transactions.create_index([("telegramId", 1), ("refHash", 1)], sparse=True)
-    transactions.create_index([("telegramId", 1), ("contentHash", 1)], sparse=True)
+    transactions.create_index([("telegramId", 1), ("referenceNo", 1)], sparse=True)
     merchant_categories.create_index("merchant", unique=True)
     conversations.create_index("telegramId", unique=True)
 except PyMongoError as error:

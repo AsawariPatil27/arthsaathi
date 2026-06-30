@@ -1,9 +1,9 @@
 from db import users
 
 
-def default_user(telegram_id):
+def default_user(telegramId):
     return {
-        "telegramId": str(telegram_id),
+        "telegramId": str(telegramId),
         "interactionMode": "",
         "language": "",
         "currentStep": "start",
@@ -27,13 +27,13 @@ def save_user(user):
     return user
 
 
-def get_or_create_user(telegram_id, username="", first_name=""):
-    tid = str(telegram_id)
-    user = users.find_one({"telegramId": tid})
+def get_or_create_user(telegramId, username="", firstName=""):
+    telegramId = str(telegramId)
+    user = users.find_one({"telegramId": telegramId})
     if not user:
-        user = default_user(tid)
+        user = default_user(telegramId)
         save_user(user)
-        print("[NEW USER]", tid)
+        print("[NEW USER]", telegramId)
         return user
     user.pop("_id", None)
     return user

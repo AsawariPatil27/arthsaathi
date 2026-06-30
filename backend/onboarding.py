@@ -20,103 +20,59 @@ NUMERIC_STEPS = {
 }
 
 COPY = {
-    "en": {
-        "language": "Choose your language.",
-        "mode": "Which mode suits you better?",
-        "other": "More languages will come later. For now choose English, Hindi, or Marathi.",
-        "incomeType": "Your income type?",
-        "occupation": "Choose your occupation.",
-        "salary": "Monthly take-home salary?",
-        "averageIncome": "Average monthly income?",
-        "lowestIncome": "Lowest month income?",
-        "expense": "Monthly expenses?",
-        "state": "Which state are you in?",
-        "district": "Which district are you in?",
-        "leanDuration": "How many months is your lean season?",
-        "leanExpense": "Monthly expenses during lean season?",
-        "harvestIncome": "What is your typical income per harvest?",
-        "done": "Profile completed. I can now create your plan.",
-    },
-    "hi": {
-        "language": "अपनी भाषा चुनें।",
-        "mode": "आपके लिए कौन सा तरीका बेहतर है?",
-        "other": "बाकी भाषाएं बाद में आएंगी। अभी अंग्रेजी, हिंदी या मराठी चुनें।",
-        "incomeType": "आपकी कमाई किस प्रकार की है?",
-        "occupation": "अपना काम चुनें।",
-        "salary": "मासिक हाथ में आने वाली तनख्वाह कितनी है?",
-        "averageIncome": "औसत मासिक आय कितनी है?",
-        "lowestIncome": "सबसे कम आय वाले महीने में कितनी कमाई होती है?",
-        "expense": "मासिक खर्च कितना है?",
-        "state": "आप किस राज्य में हैं?",
-        "district": "आप किस जिले में हैं?",
-        "leanDuration": "कमाई कम रहने का समय कितने महीने होता है?",
-        "leanExpense": "उस समय मासिक खर्च कितना होता है?",
-        "harvestIncome": "फसल कटाई पर आपकी आमदनी (कमाई) लगभग कितनी होती है?",
-        "done": "प्रोफाइल पूरी हो गई। अब मैं आपका योजना बना सकता हूं।",
-    },
-    "mr": {
-        "language": "तुमची भाषा निवडा.",
-        "mode": "तुमच्यासाठी कोणता प्रकार जास्त सोयीचा आहे?",
-        "other": "इतर भाषा नंतर येतील. सध्या इंग्रजी, हिंदी किंवा मराठी निवडा.",
-        "incomeType": "तुमचे उत्पन्न कोणत्या प्रकारचे आहे?",
-        "occupation": "तुमचा व्यवसाय निवडा.",
-        "salary": "दर महिन्याला हातात येणारा पगार किती आहे?",
-        "averageIncome": "सरासरी मासिक उत्पन्न किती आहे?",
-        "lowestIncome": "सगळ्यात कमी उत्पन्नाच्या महिन्यात किती कमाई होते?",
-        "expense": "मासिक खर्च किती आहे?",
-        "state": "तुम्ही कोणत्या राज्यात आहात?",
-        "district": "तुम्ही कोणत्या जिल्ह्यात आहात?",
-        "leanDuration": "कमी उत्पन्नाचा काळ किती महिने असतो?",
-        "leanExpense": "त्या काळात मासिक खर्च किती असतो?",
-        "harvestIncome": "पीक कापणीच्या वेळी तुमचे अंदाजे उत्पन्न किती असते?",
-        "done": "प्रोफाइल पूर्ण झाली. आता मी तुमची योजना बनवू शकतो.",
-    },
+    "language": "Choose your language.",
+    "mode": "Which mode suits you better?",
+    "other": "More languages will come later. For now choose English, Hindi, or Marathi.",
+    "incomeType": "Your income type?",
+    "occupation": "Choose your occupation.",
+    "salary": "Monthly take-home salary?",
+    "averageIncome": "Average monthly income?",
+    "lowestIncome": "Lowest month income?",
+    "expense": "Monthly expenses?",
+    "state": "Which state are you in?",
+    "district": "Which district are you in?",
+    "leanDuration": "How many months is your lean season?",
+    "leanExpense": "Monthly expenses during lean season?",
+    "harvestIncome": "What is your typical income per harvest?",
+    "done": "Profile completed. I can now help you with your finances.",
 }
 
 OPTIONS = {
-    "mode": [("voice", "Voice first", "आवाज प्रथम ", "आवाज आधी"), ("text", "Visual / text", "दृश्य / मजकूर", "दृश्य / मजकूर")],
-    "incomeType": [("fixed", "Fixed income", "निश्चित आय", "निश्चित उत्पन्न"), ("variable", "Variable income", "बदलती आय", "बदलते उत्पन्न")],
+    "mode": [("voice", "Voice first"), ("text", "Visual / text")],
+    "incomeType": [("fixed", "Fixed income"), ("variable", "Variable income")],
     "fixedJobs": [
-        ("government_employee", "Government Employee", "सरकारी कर्मचारी", "सरकारी कर्मचारी"),
-        ("private_employee", "Private Sector Employee", "निजी क्षेत्र कर्मचारी", "खाजगी क्षेत्रातील कर्मचारी"),
-        ("teacher", "Teacher / Professor", "शिक्षक / प्रोफेसर", "शिक्षक / प्राध्यापक"),
-        ("healthcare_worker", "Healthcare Worker", "स्वास्थ्य कर्मचारी", "आरोग्य कर्मचारी"),
-        ("other", "Other", "अन्य", "इतर"),
+        ("government_employee", "Government Employee"),
+        ("private_employee", "Private Sector Employee"),
+        ("teacher", "Teacher / Professor"),
+        ("healthcare_worker", "Healthcare Worker"),
+        ("other", "Other"),
     ],
     "variableJobs": [
-        ("farmer", "Farmer", "किसान", "शेतकरी"),
-        ("gig_worker", "Gig Worker", "गिग कामगार", "गिग कामगार"),
-        ("shop_owner", "Small Business / Shop Owner", "छोटा व्यवसाय / दुकानदार", "लहान व्यवसाय / दुकानदार"),
-        ("daily_wage", "Daily Wage Worker", "दिहाड़ी मजदूर", "रोजंदारी कामगार"),
-        ("freelancer", "Freelancer", "स्वतंत्र कामगार", "स्वतंत्र कामगार"),
-        ("homemaker", "Homemaker", "गृहिणी", "गृहिणी"),
-        ("student", "Student", "विद्यार्थी", "विद्यार्थी"),
-        ("other", "Other", "अन्य", "इतर"),
+        ("farmer", "Farmer"),
+        ("gig_worker", "Gig Worker"),
+        ("shop_owner", "Small Business / Shop Owner"),
+        ("daily_wage", "Daily Wage Worker"),
+        ("freelancer", "Freelancer"),
+        ("homemaker", "Homemaker"),
+        ("student", "Student"),
+        ("other", "Other"),
     ],
 }
 
+# Language buttons stay in native scripts — user hasn't chosen language yet so no translation runs
 LANGUAGE_BUTTONS = [
     [{"text": "हिंदी", "data": "hi"}, {"text": "मराठी", "data": "mr"}, {"text": "English", "data": "en"}],
     [{"text": "ಕನ್ನಡ", "data": "kn"}, {"text": "Other languages", "data": "other_lang"}],
 ]
 
 
-def lang(user):
-    return user.get("language") or "en"
+def ask(key, buttons=None):
+    return {"reply": COPY[key], "buttons": buttons or []}
 
 
-def ask(user, key, buttons=None):
-    return {"reply": COPY[lang(user)][key], "buttons": buttons or []}
-
-
-def option_button(item, user):
-    index = {"en": 1, "hi": 2, "mr": 3}.get(lang(user), 1)
-    return {"text": item[index], "data": item[0]}
-
-
-def option_rows(key, user, one_row=False):
-    buttons = [option_button(item, user) for item in OPTIONS[key]]
-    return [buttons] if one_row else [[button] for button in buttons]
+def option_rows(key, one_row=False):
+    buttons = [{"text": label, "data": value} for value, label in OPTIONS[key]]
+    return [buttons] if one_row else [[b] for b in buttons]
 
 
 def number(value):
@@ -128,7 +84,7 @@ def start_onboarding(user):
     user["currentStep"] = "language"
     user["profileCompleted"] = False
     save_user(user)
-    return ask(user, "language", LANGUAGE_BUTTONS)
+    return ask("language", LANGUAGE_BUTTONS)
 
 
 def handle_onboarding(user, raw_answer):
@@ -146,7 +102,7 @@ def handle_onboarding(user, raw_answer):
         return set_next(user, "interactionMode", "voice" if answer == "voice" else "text", "incomeType")
     if step == "incomeType":
         user["incomeType"] = "fixed" if answer == "fixed" else "variable"
-        return move(user, "occupation", ask(user, "occupation", occupation_buttons(user)))
+        return move(user, "occupation", ask("occupation", occupation_buttons(user)))
     if step == "occupation":
         return set_next(user, "occupation", answer, next_income_step({**user, "occupation": answer}))
     if step in ["monthlyIncome", "averageIncome", "lowestMonthIncome", "harvestIncome", "state", "district", "leanDurationMonths", "leanMonthlyExpense", "monthlyExpense"]:
@@ -156,9 +112,9 @@ def handle_onboarding(user, raw_answer):
 
 def set_language(user, answer):
     if answer in ["other_lang", "kn"]:
-        return ask(user, "other", LANGUAGE_BUTTONS)
+        return ask("other", LANGUAGE_BUTTONS)
     user["language"] = answer if answer in ["en", "hi", "mr"] else "en"
-    return move(user, "interactionMode", ask(user, "mode", option_rows("mode", user, True)))
+    return move(user, "interactionMode", ask("mode", option_rows("mode", one_row=True)))
 
 
 def save_step(user, step, answer):
@@ -200,12 +156,12 @@ def ask_current(user):
         "leanDurationMonths": "leanDuration",
         "leanMonthlyExpense": "leanExpense",
     }[user["currentStep"]]
-    buttons = option_rows("incomeType", user, True) if user["currentStep"] == "incomeType" else []
-    return ask(user, key, buttons)
+    buttons = option_rows("incomeType", one_row=True) if user["currentStep"] == "incomeType" else []
+    return ask(key, buttons)
 
 
 def occupation_buttons(user):
-    return option_rows("fixedJobs" if user.get("incomeType") == "fixed" else "variableJobs", user)
+    return option_rows("fixedJobs" if user.get("incomeType") == "fixed" else "variableJobs")
 
 
 def next_income_step(user):
@@ -220,10 +176,7 @@ def complete(user):
     save_user(user)
 
     from menu import get_menu_response
-    from language import to_user_language
 
     menu_resp = get_menu_response(user)
-    # Add the completion greeting to the top of the menu reply
-    done_msg = COPY[lang(user)]["done"]
-    menu_resp["reply"] = f"{done_msg}\n\n{menu_resp['reply']}"
+    menu_resp["reply"] = f"{COPY['done']}\n\n{menu_resp['reply']}"
     return menu_resp

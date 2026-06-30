@@ -13,13 +13,23 @@ FIELDS = [
 ]
 
 
+_LANG_CODES = {
+    "hindi": "hi", "marathi": "mr", "tamil": "ta", "telugu": "te",
+    "kannada": "kn", "bengali": "bn", "gujarati": "gu", "punjabi": "pa",
+    "english": "en",
+}
+
+
 def update_profile_from_message(user, message):
     changes = _extract(message)
     if not changes:
         return {"reply": "Tell me what profile detail you want to change.", "buttons": []}
     for field, value in changes.items():
-        if field in FIELDS:
-            user[field] = value
+        if field not in FIELDS:
+            continue
+        if field == "language" and isinstance(value, str):
+            value = _LANG_CODES.get(value.lower().strip(), value)
+        user[field] = value
     save_user(user)
     return {"reply": "Profile updated.", "buttons": []}
 

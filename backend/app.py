@@ -38,15 +38,19 @@ def handle_message(user, message):
     return to_user_language(response, language)
 
 
+def translate(response, user):
+    return to_user_language(response, user.get("language", "en"))
+
+
 @app.post("/chat")
 def chat(payload: dict):
     user = get_or_create_user(payload["telegramId"], payload.get("username", ""), payload.get("firstName", ""))
     message = payload.get("message", "")
     print(f"[CHAT] {user['telegramId']}: {message}")
     if not user.get("profileCompleted") or message == "/start":
-        return handle_onboarding(user, message)
+        return translate(handle_onboarding(user, message), user)
     if message.strip().lower() == "/menu":
-        return get_menu_response(user)
+        return translate(get_menu_response(user), user)
     return handle_message(user, message)
 
 
@@ -56,10 +60,10 @@ def callback(payload: dict):
     data = payload.get("callbackData", "")
     print(f"[CALLBACK] {user['telegramId']}: {data}")
     if not user.get("profileCompleted"):
-        return handle_onboarding(user, data)
+        return translate(handle_onboarding(user, data), user)
     if data.startswith("menu:"):
         action = data.split(":", 1)[1]
-        return handle_menu_callback(user, action)
+        return translate(handle_menu_callback(user, action), user)
     return handle_message(user, data)
 
 
