@@ -20,8 +20,8 @@ app = FastAPI()
 def handle_message(user, message):
     """Translate every user message to English, run through AI graph, translate reply back.
 
-    Machine callbacks (choose_goal:, confirm_goal:, edit_goal:, scheme:) are
-    never translated — they are internal codes, not user-typed text.
+    Machine callbacks (scheme:) are never translated — they are internal
+    codes, not user-typed text.
     The original raw message is always preserved in user['originalMessage']
     so agents like scam detection can access the original URLs/text.
     """
